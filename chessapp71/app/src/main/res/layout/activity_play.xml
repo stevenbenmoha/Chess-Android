@@ -5,24 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
-        android:layout_width="298dp"
+    <TableLayout
+        android:layout_width="315dp"
         android:layout_height="306dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.414">
+        android:background="@drawable/chessboard"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="74dp">
 
-        <ImageView
-            android:id="@+id/chessBoardPic"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/chessboard"
-            tools:layout_editor_absoluteX="27dp"
-            tools:layout_editor_absoluteY="0dp" />
-    </FrameLayout>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="42dp">
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="42dp">
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="42dp" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="42dp" />
+    </TableLayout>
 
     <TextView
         android:id="@+id/playerTurnText"
