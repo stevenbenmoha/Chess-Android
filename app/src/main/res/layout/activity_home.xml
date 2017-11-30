@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cs213.chessapp71.HomeActivity">
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chess"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="40dp" />
+
+    <Button
+        android:id="@+id/playGameButton"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="182dp"
+        android:layout_height="64dp"
+        android:text="Start new game"
+        tools:layout_editor_absoluteX="101dp"
+        tools:layout_editor_absoluteY="234dp" />
+
+    <Button
+        android:id="@+id/viewPrevGame"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="159dp"
+        android:layout_height="55dp"
+        android:text="View Previous Game"
+        tools:layout_editor_absoluteX="113dp"
+        tools:layout_editor_absoluteY="313dp" />
+</android.support.constraint.ConstraintLayout>
