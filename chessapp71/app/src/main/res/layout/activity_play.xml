@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="298dp"
+        android:layout_height="306dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.414">
+
+        <ImageView
+            android:id="@+id/chessBoardPic"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/chessboard"
+            tools:layout_editor_absoluteX="27dp"
+            tools:layout_editor_absoluteY="0dp" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/playerTurnText"
+        android:layout_width="196dp"
+        android:layout_height="49dp"
+        android:text="Player __ 's Turn"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="94dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <Button
+        android:id="@+id/drawButton"
+        android:layout_width="100sp"
+        android:layout_height="45sp"
+        android:text="Draw"
+        tools:layout_editor_absoluteX="77dp"
+        tools:layout_editor_absoluteY="450dp" />
+
+    <Button
+        android:id="@+id/resignButton"
+        android:layout_width="100sp"
+        android:layout_height="45sp"
+        android:backgroundTint="#D32F2F"
+        android:text="Resign"
+        tools:layout_editor_absoluteX="205dp"
+        tools:layout_editor_absoluteY="450dp" />
+
+    <Button
+        android:id="@+id/aiButton"
+        android:layout_width="100sp"
+        android:layout_height="45sp"
+        android:text="AI Move"
+        tools:layout_editor_absoluteX="77dp"
+        tools:layout_editor_absoluteY="399dp" />
+
+    <Button
+        android:id="@+id/undoButton"
+        android:layout_width="100sp"
+        android:layout_height="45sp"
+        android:text="Undo"
+        tools:layout_editor_absoluteX="205dp"
+        tools:layout_editor_absoluteY="399dp" />
+
+</android.support.constraint.ConstraintLayout>
