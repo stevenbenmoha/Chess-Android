@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cs213.chessapp71.HomeActivity">
+    tools:context="cs213.chessapp71.HomeActivity"
+    android:background="@drawable/wallpaper">
 
     <TextView
         android:id="@+id/titleText"
@@ -14,6 +15,7 @@
         android:layout_marginTop="40dp"
         android:text="Chess"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@android:color/background_light"
         android:textSize="60sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/playGameButton"
