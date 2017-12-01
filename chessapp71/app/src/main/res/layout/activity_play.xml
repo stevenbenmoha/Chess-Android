@@ -6,11 +6,17 @@
     android:layout_height="match_parent">
 
     <TableLayout
-        android:layout_width="315dp"
-        android:layout_height="306dp"
+        android:id="@+id/tableLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="19dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginStart="34dp"
         android:background="@drawable/chessboard"
-        tools:layout_editor_absoluteX="35dp"
-        tools:layout_editor_absoluteY="74dp">
+        app:layout_constraintBottom_toTopOf="@+id/undoButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playerTurnText">
 
         <TableRow
             android:layout_width="match_parent"
@@ -36,43 +42,63 @@
     <TextView
         android:id="@+id/playerTurnText"
         android:layout_width="196dp"
-        android:layout_height="49dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginTop="16dp"
         android:text="Player __ 's Turn"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="94dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/drawButton"
-        android:layout_width="100sp"
-        android:layout_height="45sp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginStart="77dp"
         android:text="Draw"
-        tools:layout_editor_absoluteX="77dp"
-        tools:layout_editor_absoluteY="450dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/resignButton"
+        app:layout_constraintEnd_toStartOf="@+id/resignButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/resignButton" />
 
     <Button
         android:id="@+id/resignButton"
-        android:layout_width="100sp"
-        android:layout_height="45sp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="79dp"
         android:backgroundTint="#D32F2F"
         android:text="Resign"
-        tools:layout_editor_absoluteX="205dp"
-        tools:layout_editor_absoluteY="450dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/drawButton"
+        app:layout_constraintTop_toBottomOf="@+id/undoButton" />
 
     <Button
         android:id="@+id/aiButton"
-        android:layout_width="100sp"
-        android:layout_height="45sp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginStart="77dp"
         android:text="AI Move"
-        tools:layout_editor_absoluteX="77dp"
-        tools:layout_editor_absoluteY="399dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/undoButton"
+        app:layout_constraintEnd_toStartOf="@+id/undoButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/undoButton" />
 
     <Button
         android:id="@+id/undoButton"
-        android:layout_width="100sp"
-        android:layout_height="45sp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="6dp"
+        android:layout_marginEnd="79dp"
         android:text="Undo"
-        tools:layout_editor_absoluteX="205dp"
-        tools:layout_editor_absoluteY="399dp" />
+        app:layout_constraintBottom_toTopOf="@+id/resignButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/aiButton"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
 </android.support.constraint.ConstraintLayout>
