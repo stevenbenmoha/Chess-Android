@@ -3,7 +3,6 @@
  * @author Steven Benmoha
  */
 package Logic;
-import chess.Board;
 public class Rook extends Piece
 {
     private String color;

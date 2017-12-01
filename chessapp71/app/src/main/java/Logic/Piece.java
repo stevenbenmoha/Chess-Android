@@ -3,7 +3,6 @@
  * @author Steven Benmoha
  */
 package Logic;
-import chess.Board;
 public abstract class Piece
 {
     boolean hasMoved;

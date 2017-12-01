@@ -3,7 +3,6 @@
  * @author Steven Benmoha
  */
 package Logic;
-import pieces.*;
 public class Board
 {
     private Piece[][] board = new Piece[8][8];
@@ -180,9 +179,9 @@ public class Board
             if((board[curRow][curCol].toString().contains("wK") && board[newRow][newCol].toString().contains("wR")) || (board[curRow][curCol].toString().contains("bK") && board[newRow][newCol].toString().contains("bR")))
             {
                 Piece temp = board[newRow][newCol]; // set a temp piece that is
-                // that rook
-                board[newRow][newCol] = curPiece; // king in rook's spot
-                board[curRow][curCol] = temp; // rook in king's spot
+                // that blackrook
+                board[newRow][newCol] = curPiece; // blackking in blackrook's spot
+                board[curRow][curCol] = temp; // blackrook in blackking's spot
             }
             else
             {
@@ -245,7 +244,7 @@ public class Board
     }
     /**
      * 
-     * Checks if piece can move to get king out of Check
+     * Checks if piece can move to get blackking out of Check
      * 
      * @param color String color representing which player is being tested for possible
      * moves
@@ -279,13 +278,13 @@ public class Board
         return false;
     }
     /**
-     * Gets the king's position on the board
+     * Gets the blackking's position on the board
      * 
-     * @param color String color representing which color's king is being searched for
+     * @param color String color representing which color's blackking is being searched for
      * @param curBoard Piece[][] representing the board that is being searched
      *
-     * @return kingPos 1D array of the position of the king for color Method to search for
-     * the king for a given color
+     * @return kingPos 1D array of the position of the blackking for color Method to search for
+     * the blackking for a given color
      */
     private int[] getKingPos(String color, Piece[][] curBoard)
     {
@@ -321,14 +320,14 @@ public class Board
                 curBoard[i] = board[i].clone();
         }
         int[] tmp = getKingPos(color, curBoard); // Find the location of the
-        // color's king
+        // color's blackking
         int kingRow = tmp[0];
         int kingCol = tmp[1];
         for(int i = 0; i < SIZE; i++) // Go through the whole board
             for(int j = 0; j < SIZE; j++)
                 if(curBoard[i][j] != null)
                     // Check if the other player's can perform a move that will
-                    // capture the cur player's king
+                    // capture the cur player's blackking
                     if(curBoard[i][j].checkMoveValidity(this, curBoard, i, j, kingRow, kingCol) && !curBoard[i][j].getColor().equalsIgnoreCase(color))
                         return true;
         return false;
