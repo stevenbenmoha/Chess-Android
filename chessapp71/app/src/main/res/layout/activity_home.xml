@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cs213.chessapp71.HomeActivity"
-    android:background="@drawable/wallpaper">
+    android:background="@drawable/wallpaper"
+    tools:context="cs213.chessapp71.HomeActivity">
 
     <TextView
         android:id="@+id/titleText"
