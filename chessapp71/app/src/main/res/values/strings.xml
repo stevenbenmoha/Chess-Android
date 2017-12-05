@@ -1,13 +1,14 @@
 <resources>
 
-    <string name="app_name">ChessApp71</string>
+    <string name="app_name">Chess</string>
 
     <string name="resign_button">Resign</string>
 
     <string name="draw_button">Draw</string>
 
     <string name="undo_button">Undo</string>
-
+    <string name = "Chess">Chess</string>
     <string name="AImove_button">AI Move</string>
-
+    <string name ="newGame">Start New Game</string>
+    <string name = "prevGame"> View Saved Games</string>
 </resources>
