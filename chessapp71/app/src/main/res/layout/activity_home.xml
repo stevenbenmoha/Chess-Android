@@ -41,7 +41,7 @@
         android:id="@+id/viewPrevGame"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="154dp"
-        android:layout_height="51dp"
+        android:layout_height="59dp"
         android:layout_marginBottom="110dp"
         android:text="@string/prevGame"
         app:layout_constraintBottom_toBottomOf="parent"
