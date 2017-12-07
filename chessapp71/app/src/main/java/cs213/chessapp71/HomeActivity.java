@@ -16,4 +16,10 @@ public class HomeActivity extends AppCompatActivity
         Intent intent = new Intent(this, PlayActivity.class);
         startActivity(intent);
     }
+    public void viewPrevGame(View view)
+    {
+        Intent intent = new Intent(this, PreviousGameActivity.class);
+        startActivity(intent);
+    }
+
 }
