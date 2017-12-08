@@ -36,6 +36,7 @@ public class MyDialogFragment extends DialogFragment
         });
         AlertDialog confirmResign = builder.create();
         confirmResign.setCanceledOnTouchOutside(false);
+
         return confirmResign;
     }
     public boolean getResign()
