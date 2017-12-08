@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Array;
@@ -90,14 +91,27 @@ public class MySaveDiag extends DialogFragment {
     }
 
     public void writeToFile(ArrayList<String> moves, String filename) throws IOException {
-        File moveFile = new File(Environment.getExternalStorageDirectory(), filename + ".txt");
-        FileWriter write = new FileWriter(moveFile);
-        write.flush();
-        write.close();
+
+        File sdcard = Environment.getExternalStorageDirectory();
+        Log.i("i", sdcard.getAbsolutePath());
+
+        File dir = new File(sdcard.getAbsolutePath() + "/Games");
+        dir.mkdir();
+
+        Log.i("i", dir.getAbsolutePath());
+        Log.i("i", filename);
+
+        File file = new File(dir, filename +".txt");
+        FileWriter write = new FileWriter(file);
         for (String curMove : moves) {
+
+            Log.i("i", curMove);
+
             write.append(curMove);
             write.append("\n");
         }
+        write.flush();
+        write.close();
     }
 
     public void setArray(ArrayList arr) {
