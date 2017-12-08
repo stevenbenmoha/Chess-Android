@@ -1,9 +1,10 @@
 package cs213.chessapp71;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -23,23 +24,14 @@ public class PreviousGameActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         String filename = getUserSelection();
-        if(filename != null)
+        try
         {
-            try
-            {
-                readFile(filename);
-            }
-            catch(IOException e)
-            {
-                e.printStackTrace();
-            }
+            readFile(filename);
+            setContentView(R.layout.activity_prev_game);
         }
-        else
+        catch(IOException e)
         {
-            Intent intent = new Intent(this, PreviousGameActivity.class);
-            startActivity(intent);
-            Snackbar error = Snackbar.make(findViewById(android.R.id.content), "No Saved Games", 3000);
-            error.show();
+            e.printStackTrace();
         }
     }
     private String getUserSelection()
@@ -47,20 +39,26 @@ public class PreviousGameActivity extends AppCompatActivity
         try
         {
             ArrayList<String> textFiles = getAllTextFiles();
-            textFiles.add("Hello");
-            textFiles.add("Goodbye");
             setContentView(R.layout.layout_game_list);
             setTitle("Choose Saved Game");
-            ListView curView = (ListView) findViewById(R.id.gameList);
+            final ListView curView = (ListView) findViewById(R.id.gameList);
             ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, textFiles);
             curView.setAdapter(arrayAdapter);
-            return "";
+            curView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+            {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+                {
+                    String selectedFromList = (String) (curView.getItemAtPosition(position));
+                    Log.i("I", "Value is " + selectedFromList);
+                }
+            });
         }
         catch(IOException e)
         {
             e.printStackTrace();
-            return null;
         }
+        return "";
     }
     private ArrayList<String> getAllTextFiles() throws IOException
     {
@@ -68,19 +66,12 @@ public class PreviousGameActivity extends AppCompatActivity
         String path = Environment.getExternalStorageDirectory().toString();
         File f = new File(path);
         File[] files = f.listFiles();
-        if(files == null)
+        for(int i = 0; i < files.length; i++)
         {
-            throw new IOException();
-        }
-        else
-        {
-            for(int i = 0; i < files.length; i++)
-            {
-                File file = files[i];
-                String filePath = file.getPath();
-                if(filePath.endsWith(".txt"))
-                    allTextFiles.add(filePath);
-            }
+            File file = files[i];
+            String filePath = file.getPath();
+            if(filePath.endsWith(".txt"))
+                allTextFiles.add(filePath);
         }
         return allTextFiles;
     }
