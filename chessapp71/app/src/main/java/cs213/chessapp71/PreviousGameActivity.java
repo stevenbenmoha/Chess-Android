@@ -80,7 +80,7 @@ public class PreviousGameActivity extends AppCompatActivity
         try
         {
             File sdcard = Environment.getExternalStorageDirectory();
-            File file = new File(sdcard, "filename");
+            File file = new File(sdcard, filename +".txt");
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String curMove;
             while((curMove = reader.readLine()) != null)

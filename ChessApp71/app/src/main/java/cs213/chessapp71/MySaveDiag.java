@@ -27,11 +27,13 @@ public class MySaveDiag extends DialogFragment {
 
     public String m_Text;
     private boolean doSave;
-    public ArrayList<String> movesMade = new ArrayList<>();
+    public ArrayList<String> movesMade = new ArrayList<String>();
 
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Title");
@@ -90,7 +92,7 @@ public class MySaveDiag extends DialogFragment {
         return m_Text;
     }
 
-    public void writeToFile(ArrayList<String> moves, String filename) throws IOException {
+    public void writeToFile(ArrayList<String> movesMade, String filename) throws IOException {
 
         File sdcard = Environment.getExternalStorageDirectory();
         Log.i("i", sdcard.getAbsolutePath());
@@ -103,9 +105,13 @@ public class MySaveDiag extends DialogFragment {
 
         File file = new File(dir, filename +".txt");
         FileWriter write = new FileWriter(file);
-        for (String curMove : moves) {
+
+        Log.i("i", "Writing");
+
+        for (String curMove : movesMade) {
 
             Log.i("i", curMove);
+
 
             write.append(curMove);
             write.append("\n");
@@ -114,9 +120,15 @@ public class MySaveDiag extends DialogFragment {
         write.close();
     }
 
-    public void setArray(ArrayList arr) {
+    public void populateArray(ArrayList<String> arr) {
 
-        movesMade = arr;
+        for (String s: arr) {
+
+            Log.i("i", s);
+            movesMade.add(s);
+
+        }
+
 
     }
 

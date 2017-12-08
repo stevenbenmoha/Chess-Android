@@ -22,7 +22,7 @@ public class HomeActivity extends AppCompatActivity
     }
     public void viewPrevGame(View view)
     {
-        String path = Environment.getExternalStorageDirectory().toString();
+        String path = Environment.getExternalStorageDirectory().toString()+"/Games";
         File f = new File(path);
         File[] files = f.listFiles();
         if(files != null)
