@@ -329,6 +329,11 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
         FileWriter write = new FileWriter(moveFile);
         write.flush();
         write.close();
+        for(String curMove: moves)
+        {
+            write.append(curMove);
+            write.append("\n");
+        }
     }
 
     public void saveFinishedGame() {
