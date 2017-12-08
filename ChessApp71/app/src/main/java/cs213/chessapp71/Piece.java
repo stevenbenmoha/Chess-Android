@@ -2,7 +2,7 @@
  * @author Colin Ackerley
  * @author Steven Benmoha
  */
-package Logic;
+package cs213.chessapp71;
 public abstract class Piece
 {
     boolean hasMoved;

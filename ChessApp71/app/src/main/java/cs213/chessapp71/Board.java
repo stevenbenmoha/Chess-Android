@@ -2,10 +2,10 @@
  * @author Colin Ackerley
  * @author Steven Benmoha
  */
-package Logic;
+package cs213.chessapp71;
 public class Board
 {
-    private Piece[][] board = new Piece[8][8];
+    public Piece[][] board = new Piece[8][8];
     private final int SIZE = 8;
     public String lastMove;
     public int startingRow;
@@ -22,7 +22,7 @@ public class Board
      * Called when a new board is created. Puts all the pieces on the board
      * for a new game
      */
-    private void initBoard()
+    public void initBoard()
     {
         board[0][0] = new Rook("black");
         board[0][1] = new Knight("black");
@@ -253,7 +253,7 @@ public class Board
      * check, false otherwise Tests all pieces for the given player to see if they
      * can move in any way that will result in that player not being in check
      */
-    private boolean canPieceMove(String color)
+    protected boolean canPieceMove(String color)
     {
         Piece[][] tmpBoard = new Piece[SIZE][];
         Piece curPiece;
@@ -286,7 +286,7 @@ public class Board
      * @return kingPos 1D array of the position of the blackking for color Method to search for
      * the blackking for a given color
      */
-    private int[] getKingPos(String color, Piece[][] curBoard)
+    protected int[] getKingPos(String color, Piece[][] curBoard)
     {
         int col = 0, row = 0;
         for(int i = 0; i < SIZE; i++)
@@ -340,7 +340,7 @@ public class Board
      *
      * @return true if the given color can be promoted, false otherwise
      */
-    private boolean checkPromotion(String color)
+    protected boolean checkPromotion(String color)
     {
         if(color.equalsIgnoreCase("white"))
             for(int i = 0; i < SIZE; i++)
@@ -364,7 +364,7 @@ public class Board
      *
      * 
      */
-    private void promote(String desiredPiece, int newRow, int newCol, String color)
+    protected void promote(String desiredPiece, int newRow, int newCol, String color)
     {
         if(checkPromotion(color))
         {

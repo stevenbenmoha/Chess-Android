@@ -2,7 +2,7 @@
  * @author Colin Ackerley
  * @author SSteven Benmoha
  */
-package Logic;
+package cs213.chessapp71;
 public class King extends Piece
 {
     private String color;
