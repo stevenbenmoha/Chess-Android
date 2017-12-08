@@ -9,4 +9,8 @@
 	<string name="prevGame">View Saved Games</string>
 	<string name="oldGame">Viewing Game Replay</string>
 	<string name="illegalMove">Illegal move, try again</string>
+	<string name="Check"> Check </string>
+	<string name="Checkmate"> Checkmate </string>
+	<string name="startingPlayer"> White\'s move </string>
+	<string name="undoError"> Can\'t undo further </string>
 </resources>

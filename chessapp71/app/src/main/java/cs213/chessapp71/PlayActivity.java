@@ -1,14 +1,21 @@
 package cs213.chessapp71;
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.util.Log;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 /**
  * Created by Steven on 11/30/2017.
@@ -16,10 +23,14 @@ import android.util.Log;
 public class PlayActivity extends AppCompatActivity implements OnClickListener
 {
     protected TableLayout chessBoardLayout;
+    protected TextView playersTurn;
+    protected Button undoButton;
     public String tag1 = null;
     public String tag2 = null;
     public String temp = null;
     public String curColor = "White";
+    public ArrayList<String> movesMade = new ArrayList<>();
+    public boolean hasUndone = false;
     int itemsSelected = 0;
     Board chessBoard;
 
@@ -30,10 +41,34 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
         chessBoardLayout = (TableLayout) findViewById(R.id.chessBoardLayout);
+        playersTurn = (TextView) findViewById(R.id.playerTurnText);
         chessBoardLayout.setOnClickListener(PlayActivity.this);
+
 
         chessBoard = new Board();
 
+        undoButton = (Button) findViewById(R.id.undoButton);
+        undoButton.setOnClickListener( new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                if (hasUndone == false) {
+                movesMade.remove(movesMade.size() - 1);
+                playThrough();
+                // curColor = flipColor(curColor);
+                playersTurn.setText(curColor+"'s move");
+                updateBoard();
+                hasUndone = true;}
+
+                else {
+
+                    Snackbar mySnackbar = Snackbar.make(findViewById(android.R.id.content),getString(R.string.undoError) , 1000);
+                    mySnackbar.show();
+                }
+
+            }
+        });
 
             }
 
@@ -50,6 +85,18 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
             //Continue
         }
     }
+
+    public void undo(View view) {
+
+
+
+    }
+
+
+
+
+
+
     public void highlight(View v)
     {
         try{
@@ -69,6 +116,7 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
         {
             Drawable highlight = getResources().getDrawable(R.drawable.highlight);
             v.setBackground(highlight);
+
             if(itemsSelected == 1)
             {
 
@@ -84,6 +132,7 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
 
 
                 play(tag1, tag2);
+                playersTurn.setText(curColor+"'s move");
 
                 itemsSelected = 0;
                 tag1 = "";
@@ -114,8 +163,6 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
 
                 TableRow row = (TableRow)chessBoardLayout.getChildAt(i);
                 ImageView img = (ImageView) row.getChildAt(j);
-
-
 
                if((chessBoard.board[i][j]) == null) {
 
@@ -212,39 +259,61 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
             if(chessBoard.inCheck(curColor, null))
             {
                 chessBoard.move(curColor, input);
+                movesMade.add(input);
+                hasUndone = false;
+                updateBoard();
 
                 if(chessBoard.inCheck(curColor, null))
                 {
                     updateBoard();
-                    System.out.println(flipColor(curColor)+" wins");
-                    System.exit(0);
+                    Context context = getApplicationContext();
+                    CharSequence text = curColor + " wins";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.setGravity(Gravity.CENTER|Gravity.CENTER, 0, 0);
+                    toast.show();
+                    // System.exit(0);
                 }
             }
             else
             {
                 Log.i("i", curColor);
+                Log.i("i", input);
                 chessBoard.move(curColor, input);
+                hasUndone = false;
+                movesMade.add(input);
                 Log.i("i", "performed move");
                 updateBoard();
             }
             if(chessBoard.inCheckmate(curColor))
             {
                 updateBoard();
-                System.out.println("Checkmate");
-                System.out.println(flipColor(curColor)+" wins");
-                System.exit(0);
+                Context context = getApplicationContext();
+                CharSequence text = getString(R.string.Checkmate);
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+                // System.exit(0);
             }
             if(chessBoard.inCheckmate(flipColor(curColor)))
             {
                 updateBoard();
-                System.out.println("Checkmate");
-                System.out.println(curColor+" wins");
-                System.exit(0);
+                Context context = getApplicationContext();
+                CharSequence text = getString(R.string.Checkmate);
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+                // System.exit(0);
             }
             if(chessBoard.inCheck(flipColor(curColor), null))
             {
-                System.out.println("Check");
-                System.out.println();
+                updateBoard();
+                Context context = getApplicationContext();
+                CharSequence text = getString(R.string.Check);
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.setGravity(Gravity.CENTER|Gravity.CENTER, 0, 0);
+                toast.show();
                 printBoard = true;
             }
             if(chessBoard.inStalemate(curColor))
@@ -263,14 +332,11 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
         {
             e.printStackTrace();
             Log.i("i","Illegal move, try again\n");
-            Snackbar mySnackbar = Snackbar.make(findViewById(android.R.id.content),"Illegal Move", 1000);
+            Snackbar mySnackbar = Snackbar.make(findViewById(android.R.id.content),getString(R.string.illegalMove) , 1000);
             mySnackbar.show();
-            printBoard = false;
+            updateBoard();
+            printBoard = true;
         }
-
-
-
-
     }
 
     /**
@@ -283,5 +349,31 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
             return "Black";
         return "White";
     }
+
+
+    public void playThrough() {
+
+        chessBoard = new Board();
+
+        curColor="White";
+
+        for (int i = 0; i < movesMade.size();i++) {
+
+            String input = movesMade.get(i);
+
+            try{
+            chessBoard.move(curColor, input);
+            }
+
+            catch(Exception c){}
+
+            curColor = flipColor(curColor);
+
+        }
+
+    }
+
+
+
 
 }
