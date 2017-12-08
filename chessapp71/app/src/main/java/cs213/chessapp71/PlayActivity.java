@@ -53,7 +53,7 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
             @Override
             public void onClick(View v) {
 
-                if (hasUndone == false) {
+                if (hasUndone == false && movesMade.size()>0) {
                 movesMade.remove(movesMade.size() - 1);
                 playThrough();
                 // curColor = flipColor(curColor);
