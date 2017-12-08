@@ -1,20 +1,24 @@
 package cs213.chessapp71;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.app.AlertDialog;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -31,6 +35,7 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
     public String tag2 = null;
     public String temp = null;
     public String curColor = "White";
+    private String m_Text;
     public ArrayList<String> movesMade = new ArrayList<>();
     public boolean hasUndone = false;
     int itemsSelected = 0;
@@ -218,10 +223,9 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
                     updateBoard();
                     Context context = getApplicationContext();
                     CharSequence text = curColor + " wins";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.setGravity(Gravity.CENTER | Gravity.CENTER, 0, 0);
-                    toast.show();
+                    Snackbar mySnackbar = Snackbar.make(findViewById(android.R.id.content), getString(R.string.Checkmate), 1000);
+                    mySnackbar.show();
+                    saveFinishedGame();
                     // System.exit(0);
                 }
             }
@@ -242,7 +246,10 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
                 CharSequence text = getString(R.string.Checkmate);
                 int duration = Toast.LENGTH_SHORT;
                 Toast toast = Toast.makeText(context, text, duration);
+                toast.setGravity(Gravity.CENTER | Gravity.CENTER, 0, 0);
                 toast.show();
+
+                // saveFinishedGame();
                 // System.exit(0);
             }
             if(chessBoard.inCheckmate(flipColor(curColor)))
@@ -252,7 +259,9 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
                 CharSequence text = getString(R.string.Checkmate);
                 int duration = Toast.LENGTH_SHORT;
                 Toast toast = Toast.makeText(context, text, duration);
+                toast.setGravity(Gravity.CENTER | Gravity.CENTER, 0, 0);
                 toast.show();
+                saveFinishedGame();
                 // System.exit(0);
             }
             if(chessBoard.inCheck(flipColor(curColor), null))
@@ -261,9 +270,8 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
                 Context context = getApplicationContext();
                 CharSequence text = getString(R.string.Check);
                 int duration = Toast.LENGTH_SHORT;
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.setGravity(Gravity.CENTER | Gravity.CENTER, 0, 0);
-                toast.show();
+                Snackbar mySnackbar = Snackbar.make(findViewById(android.R.id.content), getString(R.string.Check), 1000);
+                mySnackbar.show();
                 printBoard = true;
             }
             if(chessBoard.inStalemate(curColor))
@@ -322,4 +330,34 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
         write.flush();
         write.close();
     }
+
+    public void saveFinishedGame() {
+
+        MySaveDialogFragment mySave = new MySaveDialogFragment();
+        mySave.show(getFragmentManager(), "Diag");
+        if(mySave.getResign())
+        {
+
+        }
+        else
+        {
+
+        }
+
+
+
+    }
+
+
+    public void saveDialog() {
+
+        MySaveDiag mySave = new MySaveDiag();
+        mySave.show(getFragmentManager(), "Diag");
+
+
+        String name = mySave.getName();
+
+
+    }
+
 }
