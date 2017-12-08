@@ -1,6 +1,7 @@
 package cs213.chessapp71;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,6 +19,7 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
     public String tag1 = null;
     public String tag2 = null;
     public String temp = null;
+    public String curColor = "White";
     int itemsSelected = 0;
     Board chessBoard;
 
@@ -121,65 +123,65 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
 
                    }
 
-               else if((chessBoard.board[i][j]).equals("wP")) {
+               else if((chessBoard.board[i][j]).toString().contains("wP")) {
 
                    img.setImageResource(R.drawable.whitepawn);
 
                 }
 
-                else if((chessBoard.board[i][j]).equals("bP")) {
+                else if((chessBoard.board[i][j]).toString().contains("bP")) {
 
                     img.setImageResource(R.drawable.blackpawn);
 
                 }
 
-                else if((chessBoard.board[i][j]).equals("wR")) {
+                else if((chessBoard.board[i][j]).toString().contains("wR")) {
 
                     img.setImageResource(R.drawable.whiterook);
 
                 }
 
-                else if((chessBoard.board[i][j]).equals("bR")) {
+                else if((chessBoard.board[i][j]).toString().contains("bR")) {
 
                     img.setImageResource(R.drawable.blackrook);
 
                 }
-                else if((chessBoard.board[i][j]).equals("wB")) {
+                else if((chessBoard.board[i][j]).toString().contains("wB")) {
 
                     img.setImageResource(R.drawable.whitebishop);
 
                 }
-                else if((chessBoard.board[i][j]).equals("bB")) {
+                else if((chessBoard.board[i][j]).toString().contains("bB")) {
 
                     img.setImageResource(R.drawable.blackbishop);
 
                 }
-                else if((chessBoard.board[i][j]).equals("wN")) {
+                else if((chessBoard.board[i][j]).toString().contains("wN")) {
 
                     img.setImageResource(R.drawable.whiteknight);
 
                 }
-                else if((chessBoard.board[i][j]).equals("bN")) {
+                else if((chessBoard.board[i][j]).toString().contains("bN")) {
 
                     img.setImageResource(R.drawable.blackknight);
 
                 }
-                else if((chessBoard.board[i][j]).equals("wQ")) {
+                else if((chessBoard.board[i][j]).toString().contains("wQ")) {
 
                     img.setImageResource(R.drawable.whitequeen);
 
                 }
-                else if((chessBoard.board[i][j]).equals("wK")) {
+                else if((chessBoard.board[i][j]).toString().contains("wK")) {
 
                     img.setImageResource(R.drawable.whiteking);
 
                 }
-                else if((chessBoard.board[i][j]).equals("bQ")) {
+                else if((chessBoard.board[i][j]).toString().contains("bQ")) {
 
                     img.setImageResource(R.drawable.blackqueen);
 
                 }
-                else if((chessBoard.board[i][j]).equals("bK")) {
+                else if((chessBoard.board[i][j]).toString().contains("bK")) {
 
                     img.setImageResource(R.drawable.blackking);
 
@@ -197,8 +199,6 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
 
         tag1 = tag1.substring(6,8);
         tag2 = tag2.substring(6,8);
-
-        String curColor = "White";
 
 
         if(printBoard)
@@ -225,6 +225,7 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
                 Log.i("i", curColor);
                 chessBoard.move(curColor, input);
                 Log.i("i", "performed move");
+                updateBoard();
             }
             if(chessBoard.inCheckmate(curColor))
             {
@@ -262,6 +263,8 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
         {
             e.printStackTrace();
             Log.i("i","Illegal move, try again\n");
+            Snackbar mySnackbar = Snackbar.make(findViewById(android.R.id.content),"Illegal Move", 1000);
+            mySnackbar.show();
             printBoard = false;
         }
 

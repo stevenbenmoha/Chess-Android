@@ -8,4 +8,5 @@
 	<string name="newGame">Start New Game</string>
 	<string name="prevGame">View Saved Games</string>
 	<string name="oldGame">Viewing Game Replay</string>
+	<string name="illegalMove">Illegal move, try again</string>
 </resources>
