@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
@@ -323,9 +324,9 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
             curColor = flipColor(curColor);
         }
     }
-    public void writeToFile(ArrayList<String> moves, String filename, View view) throws IOException
+    public void writeToFile(ArrayList<String> moves, String filename) throws IOException
     {
-        File moveFile = new File(view.getContext().getFilesDir(), filename);
+        File moveFile = new File(Environment.getExternalStorageDirectory(), filename + ".txt");
         FileWriter write = new FileWriter(moveFile);
         write.flush();
         write.close();
