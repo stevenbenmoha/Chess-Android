@@ -30,88 +30,10 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
         chessBoardLayout = (TableLayout) findViewById(R.id.chessBoardLayout);
         chessBoardLayout.setOnClickListener(PlayActivity.this);
 
-        boolean drawAvail = false;
-        boolean printBoard = true;
-
         chessBoard = new Board();
 
-        String curColor = "White";
 
-
-            if(printBoard)
-                updateBoard();
-            System.out.print(curColor+"'s move: ");
-            String input = tag1+" "+tag2;
-            System.out.println();
-
-                try
-                {
-                    if(chessBoard.inCheck(curColor, null))
-                    {
-                        chessBoard.move(curColor, input);
-                        if(chessBoard.inCheck(curColor, null))
-                        {
-                            updateBoard();
-                            System.out.println(flipColor(curColor)+" wins");
-                            System.exit(0);
-                        }
-                    }
-                    else
-                    {
-                        chessBoard.move(curColor, input);
-                    }
-                    if(chessBoard.inCheckmate(curColor))
-                    {
-                        updateBoard();
-                        System.out.println("Checkmate");
-                        System.out.println(flipColor(curColor)+" wins");
-                        System.exit(0);
-                    }
-                    if(chessBoard.inCheckmate(flipColor(curColor)))
-                    {
-                        updateBoard();
-                        System.out.println("Checkmate");
-                        System.out.println(curColor+" wins");
-                        System.exit(0);
-                    }
-                    if(chessBoard.inCheck(flipColor(curColor), null))
-                    {
-                        System.out.println("Check");
-                        System.out.println();
-                        printBoard = true;
-                    }
-                    if(chessBoard.inStalemate(curColor))
-                    {
-                        updateBoard();
-                        System.out.println("Stalemate");
-                        System.exit(0);
-                    }
-                    else if(!chessBoard.inCheckmate(curColor))
-                    {
-                        curColor = flipColor(curColor);
-                        printBoard = true;
-                    }
-                }
-                catch(Exception e)
-                {
-                    System.out.println("Illegal move, try again\n");
-                    printBoard = false;
-                }
             }
-
-    /**
-     *@param s String that is either black or white
-     *@return String that is the opposite of the color it was passed. Returns white if s was black, and black if s was white
-     */
-    private static String flipColor(String s)
-    {
-        if(s.equals("White"))
-            return "Black";
-        return "White";
-    }
-
-
-
 
     public void resignGame(View view)
     {
@@ -132,6 +54,7 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
 
         temp = tag1;
         tag1 = v.getTag().toString();
+
         if(tag1.equals(tag2))
         {   // Double-clicking same piece cancels out selection
             v.setBackground(null);
@@ -146,15 +69,20 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
             v.setBackground(highlight);
             if(itemsSelected == 1)
             {
-                /*
+
+
                 ImageView imageView = (ImageView) chessBoardLayout.findViewWithTag(tag2);
                 ImageView imageView2 = (ImageView) chessBoardLayout.findViewWithTag(tag1);
-                Drawable i = imageView.getDrawable();
-                Drawable j = imageView2.getDrawable();
-                imageView.setImageDrawable(j);
-                imageView2.setImageDrawable(i);
+                //Drawable i = imageView.getDrawable();
+                // Drawable j = imageView2.getDrawable();
+                // imageView.setImageDrawable(j);
+                // imageView2.setImageDrawable(i);
                 imageView.setBackground(null);
-                imageView2.setBackground(null); */
+                imageView2.setBackground(null);
+
+
+                play(tag1, tag2);
+
                 itemsSelected = 0;
                 tag1 = "";
                 tag2 = "";
@@ -261,8 +189,96 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
         }
 
 
+    public void play(String tag1, String tag2) {
+
+        boolean drawAvail = false;
+        boolean printBoard = true;
+
+
+        tag1 = tag1.substring(6,8);
+        tag2 = tag2.substring(6,8);
+
+        String curColor = "White";
+
+
+        if(printBoard)
+            updateBoard();
+        Log.i("i",curColor+"'s move: ");
+        String input = tag2+" "+tag1;
+        Log.i("i", input);
+
+        try
+        {
+            if(chessBoard.inCheck(curColor, null))
+            {
+                chessBoard.move(curColor, input);
+
+                if(chessBoard.inCheck(curColor, null))
+                {
+                    updateBoard();
+                    System.out.println(flipColor(curColor)+" wins");
+                    System.exit(0);
+                }
+            }
+            else
+            {
+                Log.i("i", curColor);
+                chessBoard.move(curColor, input);
+                Log.i("i", "performed move");
+            }
+            if(chessBoard.inCheckmate(curColor))
+            {
+                updateBoard();
+                System.out.println("Checkmate");
+                System.out.println(flipColor(curColor)+" wins");
+                System.exit(0);
+            }
+            if(chessBoard.inCheckmate(flipColor(curColor)))
+            {
+                updateBoard();
+                System.out.println("Checkmate");
+                System.out.println(curColor+" wins");
+                System.exit(0);
+            }
+            if(chessBoard.inCheck(flipColor(curColor), null))
+            {
+                System.out.println("Check");
+                System.out.println();
+                printBoard = true;
+            }
+            if(chessBoard.inStalemate(curColor))
+            {
+                updateBoard();
+                System.out.println("Stalemate");
+                System.exit(0);
+            }
+            else if(!chessBoard.inCheckmate(curColor))
+            {
+                curColor = flipColor(curColor);
+                printBoard = true;
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            Log.i("i","Illegal move, try again\n");
+            printBoard = false;
+        }
 
 
 
+
+    }
+
+    /**
+     *@param s String that is either black or white
+     *@return String that is the opposite of the color it was passed. Returns white if s was black, and black if s was white
+     */
+    private static String flipColor(String s)
+    {
+        if(s.equals("White"))
+            return "Black";
+        return "White";
+    }
 
 }
