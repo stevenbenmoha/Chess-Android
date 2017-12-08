@@ -2,6 +2,9 @@ package cs213.chessapp71;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -38,9 +41,18 @@ public class PreviousGameActivity extends AppCompatActivity
             ArrayList<String> textFiles = getAllTextFiles();
             setContentView(R.layout.layout_game_list);
             setTitle("Choose Saved Game");
-            ListView curView = (ListView) findViewById(R.id.gameList);
+            final ListView curView = (ListView) findViewById(R.id.gameList);
             ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, textFiles);
             curView.setAdapter(arrayAdapter);
+            curView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+            {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+                {
+                    String selectedFromList = (String) (curView.getItemAtPosition(position));
+                    Log.i("I", "Value is " + selectedFromList);
+                }
+            });
         }
         catch(IOException e)
         {
