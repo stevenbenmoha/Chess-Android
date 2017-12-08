@@ -5,7 +5,6 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:background="@drawable/wallpaper"
-	android:contextClickable="false"
 	tools:layout_editor_absoluteY="81dp">
 
 	<TableLayout
@@ -16,7 +15,6 @@
 		android:layout_marginEnd="34dp"
 		android:layout_marginStart="34dp"
 		android:background="@drawable/chessboard"
-		android:clickable="false"
 		android:fadingEdge="none"
 		app:layout_constraintBottom_toTopOf="@+id/prevButton"
 		app:layout_constraintEnd_toEndOf="parent"
@@ -37,8 +35,6 @@
 				android:layout_width="0dp"
 				android:layout_height="35dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/blackrook"
 				android:tag="@+tag/a8" />
@@ -48,8 +44,6 @@
 				android:layout_width="0dp"
 				android:layout_height="35dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/blackknight"
 				android:tag="@+tag/b8" />
@@ -59,8 +53,6 @@
 				android:layout_width="0dp"
 				android:layout_height="35dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/blackbishop"
 				android:tag="@+tag/c8" />
@@ -70,8 +62,6 @@
 				android:layout_width="0dp"
 				android:layout_height="35dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/blackqueen"
 				android:tag="@+tag/d8" />
@@ -81,8 +71,6 @@
 				android:layout_width="0dp"
 				android:layout_height="35dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/blackking"
 				android:tag="@+tag/e8" />
@@ -92,8 +80,6 @@
 				android:layout_width="0dp"
 				android:layout_height="35dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/blackbishop"
 				android:tag="@+tag/f8" />
@@ -103,8 +89,6 @@
 				android:layout_width="0dp"
 				android:layout_height="35dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/blackknight"
 				android:tag="@+tag/g8" />
@@ -114,8 +98,6 @@
 				android:layout_width="0dp"
 				android:layout_height="35dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/blackrook"
 				android:tag="@+tag/h8" />
@@ -134,8 +116,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/blackpawn"
 				android:tag="@+tag/a7" />
@@ -145,8 +125,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/blackpawn"
 				android:tag="@+tag/b7" />
@@ -156,8 +134,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/blackpawn"
 				android:tag="@+tag/c7" />
@@ -167,8 +143,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/blackpawn"
 				android:tag="@+tag/d7" />
@@ -178,8 +152,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/blackpawn"
 				android:tag="@+tag/e7" />
@@ -189,8 +161,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/blackpawn"
 				android:tag="@+tag/f7" />
@@ -200,8 +170,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/blackpawn"
 				android:tag="@+tag/g7" />
@@ -211,8 +179,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/blackpawn"
 				android:tag="@+tag/h7" />
@@ -232,8 +198,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/a6" />
 
@@ -242,8 +206,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/b6" />
 
@@ -252,7 +214,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/c6" />
 
@@ -261,8 +222,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/d6" />
 
@@ -271,8 +230,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/e6" />
 
@@ -281,8 +238,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/f6" />
 
@@ -291,8 +246,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/g6" />
 
@@ -301,8 +254,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/h6" />
 		</TableRow>
@@ -321,8 +272,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/a5" />
 
@@ -331,8 +280,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/b5" />
 
@@ -341,8 +288,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/c5" />
 
@@ -351,8 +296,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/d5" />
 
@@ -361,8 +304,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/e5" />
 
@@ -371,8 +312,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/f5" />
 
@@ -381,8 +320,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/g5" />
 
@@ -391,8 +328,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/h5" />
 		</TableRow>
@@ -411,8 +346,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/a4" />
 
@@ -421,8 +354,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/b4" />
 
@@ -431,8 +362,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/c4" />
 
@@ -441,8 +370,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/d4" />
 
@@ -451,8 +378,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/e4" />
 
@@ -461,8 +386,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/f4" />
 
@@ -471,8 +394,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/g4" />
 
@@ -481,8 +402,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/h4" />
 		</TableRow>
@@ -501,8 +420,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/a3" />
 
@@ -511,8 +428,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/b3" />
 
@@ -521,8 +436,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/c3" />
 
@@ -531,8 +444,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/d3" />
 
@@ -541,8 +452,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/e3" />
 
@@ -551,8 +460,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/f3" />
 
@@ -561,8 +468,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/g3" />
 
@@ -571,8 +476,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:tag="@+tag/h3" />
 		</TableRow>
@@ -591,8 +494,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/whitepawn"
 				android:tag="@+tag/a2" />
@@ -602,8 +503,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/whitepawn"
 				android:tag="@+tag/b2" />
@@ -613,8 +512,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/whitepawn"
 				android:tag="@+tag/c2" />
@@ -624,8 +521,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/whitepawn"
 				android:tag="@+tag/d2" />
@@ -635,8 +530,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/whitepawn"
 				android:tag="@+tag/e2" />
@@ -646,8 +539,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/whitepawn"
 				android:tag="@+tag/f2" />
@@ -657,8 +548,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/whitepawn"
 				android:tag="@+tag/g2" />
@@ -668,8 +557,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/whitepawn"
 				android:tag="@+tag/h2" />
@@ -690,8 +577,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/whiterook"
 				android:tag="@+tag/a1" />
@@ -701,8 +586,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/whiteknight"
 				android:tag="@+tag/b1" />
@@ -712,8 +595,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/whitebishop"
 				android:tag="@+tag/c1" />
@@ -723,8 +604,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/whitequeen"
 				android:tag="@+tag/d1" />
@@ -734,8 +613,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/whiteking"
 				android:tag="@+tag/e1" />
@@ -745,8 +622,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/whitebishop"
 				android:tag="@+tag/f1" />
@@ -756,8 +631,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/whiteknight"
 				android:tag="@+tag/g1" />
@@ -767,8 +640,6 @@
 				android:layout_width="0dp"
 				android:layout_height="33dp"
 				android:layout_weight=".8"
-				android:clickable="true"
-				android:onClick="highlight"
 				android:padding="3dp"
 				android:src="@drawable/whiterook"
 				android:tag="@+tag/h1" />
