@@ -15,14 +15,20 @@
         android:layout_marginTop="40dp"
         android:text="@string/Chess"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@android:color/background_light"
-        android:textSize="60sp"
+        android:textSize="60dp"
         android:textStyle="bold"
+        android:textColor="@color/light_font"
+        android:shadowColor="@color/text_shadow"
+        android:shadowDx="-5"
+        android:shadowDy="-5"
+        android:shadowRadius="9"
         app:layout_constraintBottom_toTopOf="@+id/playGameButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 
     <Button
         android:id="@+id/playGameButton"
