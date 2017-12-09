@@ -99,7 +99,4 @@ public class PreviousGameActivity extends AppCompatActivity
             e.printStackTrace();
         }
     }
-    public void getUserSelection(AdapterView<?> adapter, View v, int position, long id)
-    {
-    }
 }
