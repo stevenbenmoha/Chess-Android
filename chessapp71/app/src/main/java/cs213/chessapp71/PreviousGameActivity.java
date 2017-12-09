@@ -1,4 +1,5 @@
 package cs213.chessapp71;
+
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.Snackbar;
@@ -19,11 +20,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
 /**
  * Created by colinackerley on 12/7/17.
  */
-public class PreviousGameActivity extends AppCompatActivity
-{
+public class PreviousGameActivity extends AppCompatActivity {
     ArrayList<String> moves = new ArrayList<String>();
     ArrayList<String> textFiles;
     public String[] result = new String[1];
@@ -34,8 +35,6 @@ public class PreviousGameActivity extends AppCompatActivity
     protected Button nextButton;
     protected String curColor = "White";
     protected int i = 1;
-
-
 
 
     @Override
@@ -80,8 +79,7 @@ public class PreviousGameActivity extends AppCompatActivity
 
 
                                 moveForward(moves);
-                            }
-                            else {
+                            } else {
 
                                 moveForward(moves);
                                 Snackbar mySnackbar = Snackbar.make(findViewById(android.R.id.content), getString(R.string.Checkmate) + "- " + curColor + " wins!", 2000);
@@ -97,11 +95,10 @@ public class PreviousGameActivity extends AppCompatActivity
 
                             nextButton.setEnabled(true);
 
-                            if ( i > 1 && moves.size() > 0) {
+                            if (i > 1 && moves.size() > 0) {
 
                                 moveBackward(moves);
-                            }
-                            else {
+                            } else {
 
                                 prevButton.setEnabled(false);
                                 Snackbar mySnackbar = Snackbar.make(findViewById(android.R.id.content), "Can't go further back", 2000);
@@ -116,43 +113,35 @@ public class PreviousGameActivity extends AppCompatActivity
             }
         });
 
-
-
     }
 
-    private ArrayList<String> getAllTextFiles() throws IOException
-    {
+    private ArrayList<String> getAllTextFiles() throws IOException {
         ArrayList<String> allTextFiles = new ArrayList<String>();
         String path = Environment.getExternalStorageDirectory().toString() + "/games";
         File f = new File(path);
         File[] files = f.listFiles();
-        for(int i = 0; i < files.length; i++)
-        {
+        for (int i = 0; i < files.length; i++) {
             File file = files[i];
             String filePath = file.getPath();
-            if(filePath.endsWith(".txt"))
+            if (filePath.endsWith(".txt"))
                 allTextFiles.add(file.getName());
         }
         return allTextFiles;
     }
-    private void readFile(String filename) throws IOException
-    {
-        try
-        {
+
+    private void readFile(String filename) throws IOException {
+        try {
             File sdcard = Environment.getExternalStorageDirectory();
             File dir = new File(sdcard.getAbsolutePath() + "/games");
             Log.i("I", "Filename is" + filename);
             File file = new File(dir, filename);
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String curMove;
-            while((curMove = reader.readLine()) != null)
-            {
+            while ((curMove = reader.readLine()) != null) {
                 moves.add(curMove);
             }
             reader.close();
-        }
-        catch(IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -180,7 +169,7 @@ public class PreviousGameActivity extends AppCompatActivity
             j++;
 
         }
-            i++;
+        i++;
 
     }
 
@@ -191,20 +180,12 @@ public class PreviousGameActivity extends AppCompatActivity
         chessBoard = new Board();
         curColor = "White";
 
-        Log.d("i", "value backwards: " + i);
-
-
         int j = 0;
 
-
         if (i == 1) {
-
             updateBoard();
-
         }
-
-
-        while (j < (i-1)) {
+        while (j < (i - 1)) {
 
             String input = moves.get(j);
             try {
@@ -216,12 +197,7 @@ public class PreviousGameActivity extends AppCompatActivity
             updateBoard();
             j++;
         }
-
-
     }
-
-
-
 
     public void updateBoard() {
         for (int i = 0; i < 8; i++) {
@@ -264,8 +240,4 @@ public class PreviousGameActivity extends AppCompatActivity
             return "Black";
         return "White";
     }
-
-
-
-
 }

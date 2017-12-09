@@ -35,6 +35,7 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener {
     protected TableLayout chessBoardLayout;
     protected TextView playersTurn;
     protected Button undoButton;
+    protected Button drawButton;
     public String tag1 = null;
     public String tag2 = null;
     public String temp = null;
@@ -54,6 +55,7 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener {
         chessBoardLayout.setOnClickListener(PlayActivity.this);
         chessBoard = new Board();
         undoButton = (Button) findViewById(R.id.undoButton);
+        drawButton = (Button) findViewById(R.id.drawButton);
         undoButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +72,31 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener {
                 }
             }
         });
+
+        drawButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                askDraw();
+
+            }
+        });
+
+
+
     }
+
+    public void askDraw() {
+
+        MyDrawDialogFragment myDiag = new MyDrawDialogFragment();
+        myDiag.populateArray(movesMade);
+        myDiag.winner(curColor);
+        myDiag.show(getFragmentManager(), "Diag");
+
+    }
+
+
+
 
     public void resignGame(View view) {
         MyDialogFragment myDiag = new MyDialogFragment();
