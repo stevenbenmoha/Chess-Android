@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.view.View;
 
 import java.util.ArrayList;
 
@@ -13,6 +15,7 @@ import java.util.ArrayList;
 public class MyDialogFragment extends DialogFragment
 {
     private boolean doResign;
+    private String curColor;
     public ArrayList<String> movesMade = new ArrayList<String>();
     @Override
     //Creates a confirmation dialog for if the user wants to resign.
@@ -29,6 +32,9 @@ public class MyDialogFragment extends DialogFragment
             {
                 doResign = true;
 
+
+                Snackbar mySnackbar = Snackbar.make(getActivity().findViewById(android.R.id.content), getString(R.string.Checkmate)+ "- " + curColor + " wins!", 2000);
+                mySnackbar.show();
                 MySaveDialogFragment mySave = new MySaveDialogFragment();
                 mySave.populateArray(movesMade);
                 mySave.show(getFragmentManager(), "Diag");
@@ -61,4 +67,13 @@ public class MyDialogFragment extends DialogFragment
 
         }
     }
+
+    public void winner(String winner) {
+
+        curColor = winner;
+
+    }
+
+
+
 }
