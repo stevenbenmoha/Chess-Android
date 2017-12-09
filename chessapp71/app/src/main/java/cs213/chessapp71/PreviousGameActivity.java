@@ -24,18 +24,21 @@ public class PreviousGameActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         String filename = getUserSelection();
-        try
+        Log.i("I", "Filename is " + filename);
+       /* try
         {
             readFile(filename);
             setContentView(R.layout.activity_prev_game);
         }
         catch(IOException e)
         {
-            e.printStackTrace();
+
         }
+        */
     }
     private String getUserSelection()
     {
+        final String[] result = new String[1];
         try
         {
             ArrayList<String> textFiles = getAllTextFiles();
@@ -46,11 +49,11 @@ public class PreviousGameActivity extends AppCompatActivity
             curView.setAdapter(arrayAdapter);
             curView.setOnItemClickListener(new AdapterView.OnItemClickListener()
             {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+                public void onItemClick(AdapterView<?> adapter, View v, int position, long id)
                 {
-                    String selectedFromList = (String) (curView.getItemAtPosition(position));
-                    Log.i("I", "Value is " + selectedFromList);
+                    String selected = curView.getItemAtPosition(position).toString();
+                    result[0] = selected;
+                    setContentView(R.layout.activity_prev_game);
                 }
             });
         }
@@ -58,12 +61,12 @@ public class PreviousGameActivity extends AppCompatActivity
         {
             e.printStackTrace();
         }
-        return "";
+        return result[0];
     }
     private ArrayList<String> getAllTextFiles() throws IOException
     {
         ArrayList<String> allTextFiles = new ArrayList<String>();
-        String path = Environment.getExternalStorageDirectory().toString();
+        String path = Environment.getExternalStorageDirectory().toString() + "/games";
         File f = new File(path);
         File[] files = f.listFiles();
         for(int i = 0; i < files.length; i++)
@@ -71,7 +74,7 @@ public class PreviousGameActivity extends AppCompatActivity
             File file = files[i];
             String filePath = file.getPath();
             if(filePath.endsWith(".txt"))
-                allTextFiles.add(filePath);
+                allTextFiles.add(file.getName());
         }
         return allTextFiles;
     }
@@ -80,7 +83,9 @@ public class PreviousGameActivity extends AppCompatActivity
         try
         {
             File sdcard = Environment.getExternalStorageDirectory();
-            File file = new File(sdcard, filename +".txt");
+            File dir = new File(sdcard.getAbsolutePath() + "/games");
+            Log.i("I", "Filename is" + filename);
+            File file = new File(dir, filename);
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String curMove;
             while((curMove = reader.readLine()) != null)
