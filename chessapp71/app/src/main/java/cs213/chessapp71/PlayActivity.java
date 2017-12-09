@@ -180,8 +180,7 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener {
                 if (chessBoard.inCheck(curColor, null)) {
                     updateBoard();
                     Context context = getApplicationContext();
-                    CharSequence text = curColor + " wins";
-                    Snackbar mySnackbar = Snackbar.make(findViewById(android.R.id.content), getString(R.string.Checkmate), 1000);
+                    Snackbar mySnackbar = Snackbar.make(findViewById(android.R.id.content), getString(R.string.Checkmate)+ "- " + flipColor(curColor) + " wins!", 2000);
                     mySnackbar.show();
                     saveFinishedGame();
                     // System.exit(0);
