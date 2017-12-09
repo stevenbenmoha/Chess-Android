@@ -58,7 +58,6 @@ public class MySaveDialogFragment extends DialogFragment {
 
         for (String s : arr) {
 
-            Log.i("i", s);
             movesMade.add(s);
 
         }

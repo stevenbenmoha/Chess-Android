@@ -74,6 +74,7 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener {
 
     public void resignGame(View view) {
         MyDialogFragment myDiag = new MyDialogFragment();
+        myDiag.populateArray(movesMade);
         myDiag.show(getFragmentManager(), "Diag");
         if (myDiag.getResign()) {
             //Code saying the current player resigned
@@ -197,11 +198,10 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener {
             if (chessBoard.inCheckmate(curColor)) {
                 updateBoard();
                 Context context = getApplicationContext();
-                CharSequence text = getString(R.string.Checkmate);
-                int duration = Toast.LENGTH_SHORT;
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.setGravity(Gravity.CENTER | Gravity.CENTER, 0, 0);
-                toast.show();
+                CharSequence text = curColor + " wins";
+                Snackbar mySnackbar = Snackbar.make(findViewById(android.R.id.content), getString(R.string.Checkmate), 1000);
+                mySnackbar.show();
+                saveFinishedGame();
 
                 // saveFinishedGame();
                 // System.exit(0);
@@ -209,11 +209,9 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener {
             if (chessBoard.inCheckmate(flipColor(curColor))) {
                 updateBoard();
                 Context context = getApplicationContext();
-                CharSequence text = getString(R.string.Checkmate);
-                int duration = Toast.LENGTH_SHORT;
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.setGravity(Gravity.CENTER | Gravity.CENTER, 0, 0);
-                toast.show();
+                CharSequence text = curColor + " wins";
+                Snackbar mySnackbar = Snackbar.make(findViewById(android.R.id.content), getString(R.string.Checkmate), 1000);
+                mySnackbar.show();
                 saveFinishedGame();
                 // System.exit(0);
             }
