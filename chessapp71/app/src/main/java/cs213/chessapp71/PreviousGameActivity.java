@@ -19,12 +19,41 @@ import java.util.ArrayList;
 public class PreviousGameActivity extends AppCompatActivity
 {
     ArrayList<String> moves = new ArrayList<String>();
+    ArrayList<String> textFiles;
+    public String[] result = new String[1];
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        String filename = getUserSelection();
-        Log.i("I", "Filename is " + filename);
+        setContentView(R.layout.layout_game_list);
+
+        try {
+        textFiles = getAllTextFiles(); }
+
+        catch(Exception c){}
+
+
+        setContentView(R.layout.layout_game_list);
+        setTitle("Choose Saved Game");
+        final ListView curView = (ListView) findViewById(R.id.gameList);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, textFiles);
+        curView.setAdapter(arrayAdapter);
+        curView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            public void onItemClick(AdapterView<?> adapter, View v, int position, long id)
+            {
+                String selected = curView.getItemAtPosition(position).toString();
+                result[0] = selected;
+                setContentView(R.layout.activity_prev_game);
+                Log.i("i", "File is " + result[0]);
+            }
+
+        });
+
+
+
+        /*
         try
         {
             readFile(filename);
@@ -32,35 +61,10 @@ public class PreviousGameActivity extends AppCompatActivity
         }
         catch(IOException e)
         {
-        }
+        } */
+
     }
-    private String getUserSelection()
-    {
-        final String[] result = new String[1];
-        try
-        {
-            ArrayList<String> textFiles = getAllTextFiles();
-            setContentView(R.layout.layout_game_list);
-            setTitle("Choose Saved Game");
-            final ListView curView = (ListView) findViewById(R.id.gameList);
-            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, textFiles);
-            curView.setAdapter(arrayAdapter);
-            curView.setOnItemClickListener(new AdapterView.OnItemClickListener()
-            {
-                public void onItemClick(AdapterView<?> adapter, View v, int position, long id)
-                {
-                    String selected = curView.getItemAtPosition(position).toString();
-                    result[0] = selected;
-                    setContentView(R.layout.activity_prev_game);
-                }
-            });
-        }
-        catch(IOException e)
-        {
-            e.printStackTrace();
-        }
-        return result[0];
-    }
+
     private ArrayList<String> getAllTextFiles() throws IOException
     {
         ArrayList<String> allTextFiles = new ArrayList<String>();
