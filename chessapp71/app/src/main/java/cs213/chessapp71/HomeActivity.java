@@ -22,10 +22,9 @@ public class HomeActivity extends AppCompatActivity
     }
     public void viewPrevGame(View view)
     {
-        String path = Environment.getExternalStorageDirectory().toString();
-        File f = new File(path);
-        File[] files = f.listFiles();
-        if(files != null)
+        File dir = new File( Environment.getExternalStorageDirectory().toString() + "/games")   ;
+        File[] files = dir.listFiles();
+        if(files.length != 0)
         {
             Intent intent = new Intent(this, PreviousGameActivity.class);
             startActivity(intent);
