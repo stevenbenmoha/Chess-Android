@@ -25,16 +25,14 @@ public class PreviousGameActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         String filename = getUserSelection();
         Log.i("I", "Filename is " + filename);
-       /* try
+        try
         {
             readFile(filename);
             setContentView(R.layout.activity_prev_game);
         }
         catch(IOException e)
         {
-
         }
-        */
     }
     private String getUserSelection()
     {

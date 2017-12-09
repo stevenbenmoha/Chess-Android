@@ -22,16 +22,9 @@ public class HomeActivity extends AppCompatActivity
     }
     public void viewPrevGame(View view)
     {
-<<<<<<< HEAD
-        File dir = new File( Environment.getExternalStorageDirectory().toString() + "/games")   ;
+        File dir = new File(Environment.getExternalStorageDirectory().toString() + "/games");
         File[] files = dir.listFiles();
         if(files.length != 0)
-=======
-        String path = Environment.getExternalStorageDirectory().toString()+"/Games";
-        File f = new File(path);
-        File[] files = f.listFiles();
-        if(files != null)
->>>>>>> 54ade1ec07bc22d7f65d0d9144137d44eae9ab0c
         {
             Intent intent = new Intent(this, PreviousGameActivity.class);
             startActivity(intent);
@@ -42,5 +35,4 @@ public class HomeActivity extends AppCompatActivity
             error.show();
         }
     }
-
 }
