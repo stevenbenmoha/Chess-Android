@@ -1,9 +1,9 @@
 package cs213.chessapp71;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,12 +13,16 @@ import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 /**
  * Created by colinackerley on 12/7/17.
  */
@@ -29,12 +33,15 @@ public class PreviousGameActivity extends AppCompatActivity
     protected TextView playersTurn;
     protected Button prevButton;
     protected Button nextButton;
+    protected Button nameButton;
+    protected Button dateButton;
     protected String curColor = "White";
     protected int i = 1;
     ArrayList<String> moves = new ArrayList<String>();
     ArrayList<String> textFiles;
     Board chessBoard;
-    private static String flipColor(String s)
+    @NonNull
+    protected static String flipColor(String s)
     {
         if(s.equals("White"))
             return "Black";
@@ -45,6 +52,7 @@ public class PreviousGameActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_game_list);
+        Toast.makeText(this, "Long press to delete a file", Toast.LENGTH_SHORT).show();
         try
         {
             textFiles = getAllTextFiles();
@@ -53,9 +61,11 @@ public class PreviousGameActivity extends AppCompatActivity
         {
         }
         setContentView(R.layout.layout_game_list);
+        nameButton = (Button) findViewById(R.id.nameButton);
+        dateButton = (Button) findViewById(R.id.dateButton);
         setTitle("Choose Saved Game");
-        final ListView curView = (ListView) findViewById(R.id.gameList);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, textFiles);
+        final ListView curView = findViewById(R.id.gameList);
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, textFiles);
         curView.setAdapter(arrayAdapter);
         curView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
@@ -64,16 +74,15 @@ public class PreviousGameActivity extends AppCompatActivity
                 String selected = curView.getItemAtPosition(position).toString();
                 result[0] = selected;
                 setContentView(R.layout.activity_prev_game);
-                Log.i("i", "File is " + result[0]);
                 try
                 {
                     readFile(selected);
                     setContentView(R.layout.activity_prev_game);
-                    chessBoardLayout = (TableLayout) findViewById(R.id.chessBoardLayout);
-                    playersTurn = (TextView) findViewById(R.id.playerTurnText);
+                    chessBoardLayout = findViewById(R.id.chessBoardLayout);
+                    playersTurn = findViewById(R.id.playerTurnText);
                     chessBoard = new Board();
-                    prevButton = (Button) findViewById(R.id.prevButton);
-                    nextButton = (Button) findViewById(R.id.nextButton);
+                    prevButton = findViewById(R.id.prevButton);
+                    nextButton = findViewById(R.id.nextButton);
                     nextButton.setOnClickListener(new View.OnClickListener()
                     {
                         @Override
@@ -117,6 +126,45 @@ public class PreviousGameActivity extends AppCompatActivity
                 }
             }
         });
+        curView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener()
+        {
+            public boolean onItemLongClick(AdapterView<?> adapter, View v, int position, long id)
+            {
+                String selected = curView.getItemAtPosition(position).toString();
+                textFiles.remove(selected);
+                curView.invalidateViews();
+                String path = Environment.getExternalStorageDirectory().toString() + "/games";
+                File toRemove = new File(path + "/" + selected);
+                toRemove.delete();
+                return true;
+            }
+        });
+        nameButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Collections.sort(textFiles);
+                curView.invalidateViews();
+            }
+        });
+        dateButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                String path = Environment.getExternalStorageDirectory().toString() + "/games";
+                File f = new File(path);
+                File[] files = f.listFiles();
+                Arrays.sort(files, (a, b) -> Long.compare(a.lastModified(), b.lastModified()));
+                for(int i = 0; i < files.length; i ++)
+                {
+                    textFiles.set(i, files[i].getName());
+                    Collections.reverse(textFiles);
+                }
+                curView.invalidateViews();
+            }
+        });
     }
     private ArrayList<String> getAllTextFiles() throws IOException
     {
@@ -139,7 +187,6 @@ public class PreviousGameActivity extends AppCompatActivity
         {
             File sdcard = Environment.getExternalStorageDirectory();
             File dir = new File(sdcard.getAbsolutePath() + "/games");
-            Log.i("I", "Filename is" + filename);
             File file = new File(dir, filename);
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String curMove;
@@ -158,7 +205,6 @@ public class PreviousGameActivity extends AppCompatActivity
     {
         chessBoard = new Board();
         curColor = "White";
-        Log.d("i", "value: " + i);
         int j = 0;
         while(j < i)
         {
