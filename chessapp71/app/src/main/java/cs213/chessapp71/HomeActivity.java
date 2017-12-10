@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 
 import java.io.File;
@@ -22,7 +23,12 @@ public class HomeActivity extends AppCompatActivity
     }
     public void viewPrevGame(View view)
     {
+
         File dir = new File(Environment.getExternalStorageDirectory().toString() + "/games");
+        if(!dir.exists())
+        {
+            dir.mkdirs();
+        }
         File[] files = dir.listFiles();
         if(files.length != 0)
         {

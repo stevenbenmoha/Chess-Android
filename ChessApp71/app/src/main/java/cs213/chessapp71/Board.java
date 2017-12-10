@@ -5,12 +5,11 @@
 package cs213.chessapp71;
 public class Board
 {
-    public Piece[][] board = new Piece[8][8];
     private final int SIZE = 8;
+    public Piece[][] board = new Piece[8][8];
     public String lastMove;
     public int startingRow;
     /**
-     * 
      * Board constructor
      */
     Board()
@@ -18,7 +17,6 @@ public class Board
         this.initBoard();
     }
     /**
-     * 
      * Called when a new board is created. Puts all the pieces on the board
      * for a new game
      */
@@ -46,11 +44,11 @@ public class Board
             board[6][i] = new Pawn("white");
     }
     /**
-     * @param color String color representing who is currently moving, 
-     * @param move String move
-     * representing where the move is being attempted
-     *@throws Exception Throws exception if piece is attempted to move out of bounds or is null
-     *  Method to move a given piece if the proposed move is valid
+     * @param color String color representing who is currently moving,
+     * @param move  String move
+     *              representing where the move is being attempted
+     * @throws Exception Throws exception if piece is attempted to move out of bounds or is null
+     *                   Method to move a given piece if the proposed move is valid
      */
     void move(String color, String move) throws Exception
     {
@@ -62,114 +60,114 @@ public class Board
         int tmpInt = curRow;
         switch(tmpInt)
         {
-            case 1:
-                curRow = 7;
-                break;
-            case 2:
-                curRow = 6;
-                break;
-            case 3:
-                curRow = 5;
-                break;
-            case 4:
-                curRow = 4;
-                break;
-            case 5:
-                curRow = 3;
-                break;
-            case 6:
-                curRow = 2;
-                break;
-            case 7:
-                curRow = 1;
-                break;
-            case 8:
-                curRow = 0;
-                break;
+        case 1:
+            curRow = 7;
+            break;
+        case 2:
+            curRow = 6;
+            break;
+        case 3:
+            curRow = 5;
+            break;
+        case 4:
+            curRow = 4;
+            break;
+        case 5:
+            curRow = 3;
+            break;
+        case 6:
+            curRow = 2;
+            break;
+        case 7:
+            curRow = 1;
+            break;
+        case 8:
+            curRow = 0;
+            break;
         }
         tmpInt = newRow;
         switch(tmpInt)
         {
-            case 1:
-                newRow = 7;
-                break;
-            case 2:
-                newRow = 6;
-                break;
-            case 3:
-                newRow = 5;
-                break;
-            case 4:
-                newRow = 4;
-                break;
-            case 5:
-                newRow = 3;
-                break;
-            case 6:
-                newRow = 2;
-                break;
-            case 7:
-                newRow = 1;
-                break;
-            case 8:
-                newRow = 0;
-                break;
+        case 1:
+            newRow = 7;
+            break;
+        case 2:
+            newRow = 6;
+            break;
+        case 3:
+            newRow = 5;
+            break;
+        case 4:
+            newRow = 4;
+            break;
+        case 5:
+            newRow = 3;
+            break;
+        case 6:
+            newRow = 2;
+            break;
+        case 7:
+            newRow = 1;
+            break;
+        case 8:
+            newRow = 0;
+            break;
         }
         char tmp = curPos.charAt(0);
         switch(tmp)
         {
-            case 'a':
-                curCol = 0;
-                break;
-            case 'b':
-                curCol = 1;
-                break;
-            case 'c':
-                curCol = 2;
-                break;
-            case 'd':
-                curCol = 3;
-                break;
-            case 'e':
-                curCol = 4;
-                break;
-            case 'f':
-                curCol = 5;
-                break;
-            case 'g':
-                curCol = 6;
-                break;
-            case 'h':
-                curCol = 7;
-                break;
+        case 'a':
+            curCol = 0;
+            break;
+        case 'b':
+            curCol = 1;
+            break;
+        case 'c':
+            curCol = 2;
+            break;
+        case 'd':
+            curCol = 3;
+            break;
+        case 'e':
+            curCol = 4;
+            break;
+        case 'f':
+            curCol = 5;
+            break;
+        case 'g':
+            curCol = 6;
+            break;
+        case 'h':
+            curCol = 7;
+            break;
         }
         tmp = newPos.charAt(0);
         switch(tmp)
         {
-            case 'a':
-                newCol = 0;
-                break;
-            case 'b':
-                newCol = 1;
-                break;
-            case 'c':
-                newCol = 2;
-                break;
-            case 'd':
-                newCol = 3;
-                break;
-            case 'e':
-                newCol = 4;
-                break;
-            case 'f':
-                newCol = 5;
-                break;
-            case 'g':
-                newCol = 6;
-                break;
-            case 'h':
-                newCol = 7;
-                break;
+        case 'a':
+            newCol = 0;
+            break;
+        case 'b':
+            newCol = 1;
+            break;
+        case 'c':
+            newCol = 2;
+            break;
+        case 'd':
+            newCol = 3;
+            break;
+        case 'e':
+            newCol = 4;
+            break;
+        case 'f':
+            newCol = 5;
+            break;
+        case 'g':
+            newCol = 6;
+            break;
+        case 'h':
+            newCol = 7;
+            break;
         }
         Piece curPiece = board[curRow][curCol];
         if(!curPiece.checkMoveValidity(this, board, curRow, curCol, newRow, newCol) || !curPiece.getColor().equalsIgnoreCase(color))
@@ -205,7 +203,7 @@ public class Board
             board[curRow][curCol] = null;
         }
         startingRow = curRow;
-        lastMove = newRow+","+newCol;
+        lastMove = newRow + "," + newCol;
         if(checkPromotion(color))
         {
             if(move.trim().length() > 5)
@@ -220,11 +218,10 @@ public class Board
     }
     /**
      * Checks if player is in Checkmate
-     * 
-     * @param color String color representing which player is being tested for checkmate
      *
+     * @param color String color representing which player is being tested for checkmate
      * @return true if the player of Color is in checkmate, false otherwise Method to
-     * 			see if a given player is in checkmate
+     * see if a given player is in checkmate
      */
     boolean inCheckmate(String color)
     {
@@ -232,9 +229,8 @@ public class Board
     }
     /**
      * Checks if board is in stalemate
-     * 
-     * @param color String color representing who is being tested for stalemate
      *
+     * @param color String color representing who is being tested for stalemate
      * @return true if the given player is in stalemate, false otherwise Method to
      * check if the given player is in stalemate
      */
@@ -243,12 +239,10 @@ public class Board
         return !inCheck(color, board) && !canPieceMove(color);
     }
     /**
-     * 
      * Checks if piece can move to get blackking out of Check
-     * 
-     * @param color String color representing which player is being tested for possible
-     * moves
      *
+     * @param color String color representing which player is being tested for possible
+     *              moves
      * @return true if the given player has any valid moves that don't result in
      * check, false otherwise Tests all pieces for the given player to see if they
      * can move in any way that will result in that player not being in check
@@ -279,10 +273,9 @@ public class Board
     }
     /**
      * Gets the blackking's position on the board
-     * 
-     * @param color String color representing which color's blackking is being searched for
-     * @param curBoard Piece[][] representing the board that is being searched
      *
+     * @param color    String color representing which color's blackking is being searched for
+     * @param curBoard Piece[][] representing the board that is being searched
      * @return kingPos 1D array of the position of the blackking for color Method to search for
      * the blackking for a given color
      */
@@ -304,10 +297,9 @@ public class Board
     }
     /**
      * Checks if King is in Check
-     * 
-     * @param color String color representing which piece is being tested for check
-     * @param curBoard 2d Piece array representing the current board
      *
+     * @param color    String color representing which piece is being tested for check
+     * @param curBoard 2d Piece array representing the current board
      * @return true if the given color is in check, false otherwise Method to test
      * if a given player is in check or not
      */
@@ -334,10 +326,9 @@ public class Board
     }
     /**
      * Checks to see if there is a pawn that is in position for a promotion
-     * 
-     * @param color String color representing which color is being checked for a possible
-     * promotion
      *
+     * @param color String color representing which color is being checked for a possible
+     *              promotion
      * @return true if the given color can be promoted, false otherwise
      */
     protected boolean checkPromotion(String color)
@@ -356,13 +347,11 @@ public class Board
     }
     /**
      * Promotes the pawn to the desired Piece
-     * 
-     * @param desiredPiece String representing the player's desired piece upon promotion,
-     * @param newRow int for which row to put the piece
-     * @param newCol int for which col to place the piece,
-     * @param color color representing which player is getting the promotion
      *
-     * 
+     * @param desiredPiece String representing the player's desired piece upon promotion,
+     * @param newRow       int for which row to put the piece
+     * @param newCol       int for which col to place the piece,
+     * @param color        color representing which player is getting the promotion
      */
     protected void promote(String desiredPiece, int newRow, int newCol, String color)
     {
@@ -379,7 +368,7 @@ public class Board
         }
     }
     /**
-     * Prints out the board 
+     * Prints out the board
      *
      * @return curBoard string that is a text representation of the current state of the
      * board
@@ -394,39 +383,39 @@ public class Board
             {
                 if(board[curRow][curCol] == null)
                 {
-                    if(curRow%2 == 0 && curCol%2 == 0)
+                    if(curRow % 2 == 0 && curCol % 2 == 0)
                     {
                         curBoard += "## ";
                     }
-                    else if(curRow%2 == 0 && curCol%2 == 1)
+                    else if(curRow % 2 == 0 && curCol % 2 == 1)
                     {
-                        if(curCol == 0 || curCol == SIZE-1)
+                        if(curCol == 0 || curCol == SIZE - 1)
                             curBoard += "   ";
                         else
                             curBoard += "   ";
                     }
-                    else if(curRow%2 == 1 && curCol%2 == 1)
+                    else if(curRow % 2 == 1 && curCol % 2 == 1)
                     {
                         curBoard += "## ";
                     }
-                    else if(curRow%2 == 1 && curCol%2 == 0)
+                    else if(curRow % 2 == 1 && curCol % 2 == 0)
                     {
-                        if(curCol == 0 || curCol == SIZE-1)
+                        if(curCol == 0 || curCol == SIZE - 1)
                             curBoard += "   ";
                         else
                             curBoard += "   ";
                     }
                 }
                 else
-                    curBoard += board[curRow][curCol]+" ";
+                    curBoard += board[curRow][curCol] + " ";
             }
             if(curRow > 1 && curRow < 6)
             {
                 curBoard += "";
-                curBoard += SIZE-curRow;
+                curBoard += SIZE - curRow;
             }
             else
-                curBoard += SIZE-curRow;
+                curBoard += SIZE - curRow;
             curBoard += "\n";
         }
         String letters = " a  b  c  d  e  f  g  h ";

@@ -1,5 +1,4 @@
 package cs213.chessapp71;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -8,16 +7,14 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 
 import java.util.ArrayList;
-
 /**
  * Created by Steven on 12/9/2017.
  */
-
-public class MyDrawDialogFragment extends DialogFragment {
-
+public class MyDrawDialogFragment extends DialogFragment
+{
+    public ArrayList<String> movesMade = new ArrayList<String>();
     private boolean doResign;
     private String curColor;
-    public ArrayList<String> movesMade = new ArrayList<String>();
     @Override
     //Creates a confirmation dialog for if the user wants to resign.
     //Based on their selection, a doResign boolean is set to true or false.
@@ -36,7 +33,6 @@ public class MyDrawDialogFragment extends DialogFragment {
                 MySaveDialogFragment mySave = new MySaveDialogFragment();
                 mySave.populateArray(movesMade);
                 mySave.show(getFragmentManager(), "Diag");
-
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
@@ -44,29 +40,21 @@ public class MyDrawDialogFragment extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialog, int whichButton)
             {
-
             }
         });
         AlertDialog confirmDraw = builder.create();
         confirmDraw.setCanceledOnTouchOutside(false);
-
         return confirmDraw;
     }
-
-    public void populateArray(ArrayList<String> arr) {
-
-        for (String s : arr) {
-
+    public void populateArray(ArrayList<String> arr)
+    {
+        for(String s : arr)
+        {
             movesMade.add(s);
-
         }
     }
-
-    public void winner(String winner) {
-
+    public void winner(String winner)
+    {
         curColor = winner;
-
     }
-
-
 }
