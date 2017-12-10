@@ -13,6 +13,8 @@
 	<string name="Checkmate"> Checkmate </string>
 	<string name="startingPlayer"> White\'s move </string>
 	<string name="undoError"> Can\'t undo further </string>
-	<string name= "nameSort">Sort by name</string>
-	<string name= "dateSort">Sort by date</string>
+	<string name= "AtoZ">Show A-Z</string>
+	<string name= "ZtoA">Show Z-A</string>
+	<string name= "newestFirst">Show Newest First</string>
+	<string name= "oldestFirst">Show Oldest First</string>
 </resources>

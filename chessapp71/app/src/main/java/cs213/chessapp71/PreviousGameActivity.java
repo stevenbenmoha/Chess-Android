@@ -33,8 +33,10 @@ public class PreviousGameActivity extends AppCompatActivity
     protected TextView playersTurn;
     protected Button prevButton;
     protected Button nextButton;
-    protected Button nameButton;
-    protected Button dateButton;
+    protected Button aToZ;
+    protected Button zToA;
+    protected Button newestFirst;
+    protected Button oldestFirst;
     protected String curColor = "White";
     protected int i = 1;
     ArrayList<String> moves = new ArrayList<String>();
@@ -61,8 +63,10 @@ public class PreviousGameActivity extends AppCompatActivity
         {
         }
         setContentView(R.layout.layout_game_list);
-        nameButton = (Button) findViewById(R.id.nameButton);
-        dateButton = (Button) findViewById(R.id.dateButton);
+        aToZ = (Button) findViewById(R.id.AtoZ);
+        newestFirst = (Button) findViewById(R.id.newestFirst);
+        zToA = (Button) findViewById(R.id.ZtoA);
+        oldestFirst = (Button) findViewById(R.id.oldestFirst);
         setTitle("Choose Saved Game");
         final ListView curView = findViewById(R.id.gameList);
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, textFiles);
@@ -139,7 +143,7 @@ public class PreviousGameActivity extends AppCompatActivity
                 return true;
             }
         });
-        nameButton.setOnClickListener(new View.OnClickListener()
+        aToZ.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -148,7 +152,17 @@ public class PreviousGameActivity extends AppCompatActivity
                 curView.invalidateViews();
             }
         });
-        dateButton.setOnClickListener(new View.OnClickListener()
+        zToA.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Collections.sort(textFiles);
+                Collections.reverse(textFiles);
+                curView.invalidateViews();
+            }
+        });
+        newestFirst.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -160,7 +174,23 @@ public class PreviousGameActivity extends AppCompatActivity
                 for(int i = 0; i < files.length; i ++)
                 {
                     textFiles.set(i, files[i].getName());
-                    Collections.reverse(textFiles);
+                }
+                Collections.reverse(textFiles);
+                curView.invalidateViews();
+            }
+        });
+        oldestFirst.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                String path = Environment.getExternalStorageDirectory().toString() + "/games";
+                File f = new File(path);
+                File[] files = f.listFiles();
+                Arrays.sort(files, (a, b) -> Long.compare(a.lastModified(), b.lastModified()));
+                for(int i = 0; i < files.length; i ++)
+                {
+                    textFiles.set(i, files[i].getName());
                 }
                 curView.invalidateViews();
             }

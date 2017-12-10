@@ -7,17 +7,29 @@
 	<ListView
 		android:id="@+id/gameList"
 		android:layout_width="match_parent"
-		android:layout_height="411dp" />
+		android:layout_height="316dp" />
 
 	<Button
-		android:id="@+id/nameButton"
+		android:id="@+id/AtoZ"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="@string/nameSort" />
+		android:text="@string/AtoZ" />
 
 	<Button
-		android:id="@+id/dateButton"
+		android:id="@+id/ZtoA"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="@string/dateSort" />
+		android:text="@string/ZtoA" />
+
+	<Button
+		android:id="@+id/oldestFirst"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/oldestFirst" />
+
+	<Button
+		android:id="@+id/newestFirst"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/newestFirst" />
 </LinearLayout>
