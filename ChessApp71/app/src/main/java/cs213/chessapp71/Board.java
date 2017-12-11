@@ -331,7 +331,7 @@ public class Board
      *              promotion
      * @return true if the given color can be promoted, false otherwise
      */
-    public boolean checkPromotion(String color)
+    protected boolean checkPromotion(String color)
     {
         if(color.equalsIgnoreCase("white"))
             for(int i = 0; i < SIZE; i++)
@@ -353,7 +353,7 @@ public class Board
      * @param newCol       int for which col to place the piece,
      * @param color        color representing which player is getting the promotion
      */
-    public void promote(String desiredPiece, int newRow, int newCol, String color)
+    protected void promote(String desiredPiece, int newRow, int newCol, String color)
     {
         if(checkPromotion(color))
         {
