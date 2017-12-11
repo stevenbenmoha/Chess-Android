@@ -282,10 +282,7 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
 
                 if(chessBoard.checkPromotion(curColor)) {
 
-                    selectPromotionPiece promote = new selectPromotionPiece();
-                    promote.show(getFragmentManager(), "Diag");
-
-                    piece = promote.getDesiredPiece();
+                    piece = promotionDialog();
                     Log.i("i", piece);
                     promote(tag1);
 
@@ -592,7 +589,9 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
 
     public String promotionDialog() {
 
-
+        selectPromotionPiece promote = new selectPromotionPiece();
+        promote.show(getFragmentManager(), "Diag");
+        piece = promote.getDesiredPiece();
 
         return piece;
 

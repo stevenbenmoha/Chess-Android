@@ -13,6 +13,7 @@ public class selectPromotionPiece extends DialogFragment
 {
     public String desiredPiece="queen";
 
+
     public Dialog onCreateDialog(Bundle savedInstanceState)
     {
         final String[] result = new String[1];
@@ -28,6 +29,10 @@ public class selectPromotionPiece extends DialogFragment
 
                 desiredPiece = pieces[item];
 
+                setDesiredPiece(desiredPiece);
+
+
+
 
             }
         });
@@ -40,6 +45,11 @@ public class selectPromotionPiece extends DialogFragment
     public String getDesiredPiece() {
 
         return desiredPiece;
+    }
+
+    public void setDesiredPiece(String x) {
+
+        x = desiredPiece;
     }
 
 
