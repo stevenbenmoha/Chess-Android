@@ -35,9 +35,10 @@ public class MyDialogFragment extends DialogFragment
                 doResign = true;
 
 
-                Toast toast=Toast.makeText(getActivity(),getString(R.string.Checkmate) + "- " + flipColor(curColor) + " wins!",Toast.LENGTH_SHORT);
+                Toast toast=Toast.makeText(getActivity(),(curColor) + " wins!",Toast.LENGTH_SHORT);
                 toast.show();
                 MySaveDialogFragment mySave = new MySaveDialogFragment();
+                movesMade.add("Draw"+"-"+(curColor));
                 mySave.populateArray(movesMade);
                 mySave.show(getFragmentManager(), "Diag");
 

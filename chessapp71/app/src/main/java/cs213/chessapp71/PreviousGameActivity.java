@@ -100,9 +100,9 @@ public class PreviousGameActivity extends AppCompatActivity
                             }
 
                             else{
-                                if (moves.size()>0){
+                                    if (moves.size()>0){
 
-                                moveForward(moves);
+                                             moveForward(moves);
 
                                     if(moves.get(moves.size()-1).equals("Draw")) {
 
@@ -110,11 +110,24 @@ public class PreviousGameActivity extends AppCompatActivity
 
                                     }
 
-                               else {Snackbar mySnackbar = Snackbar.make(findViewById(android.R.id.content), getString(R.string.Checkmate) + "- " + curColor + " wins!", 2000);
-                                mySnackbar.show();
-                                    // curColor = flipColor(curColor);
+                                    else if(moves.get(moves.size()-1).equals("Draw-White")){
+
+                                        playersTurn.setText("Resignation");
+                                        Snackbar mySnackbar = Snackbar.make(findViewById(android.R.id.content), "Black resigned " + "- " + "White" + " wins!", 2000);
+                                        mySnackbar.show();
                                     }
 
+                                    else if(moves.get(moves.size()-1).equals("Draw-Black")){
+
+                                        playersTurn.setText("Resignation");
+                                        Snackbar mySnackbar = Snackbar.make(findViewById(android.R.id.content), "White resigned " + "- " + "Black" + " wins!", 2000);
+                                        mySnackbar.show();
+                                    }
+
+                                     else { Snackbar mySnackbar = Snackbar.make(findViewById(android.R.id.content), getString(R.string.Checkmate) + "- " + curColor + " wins!", 2000);
+                                             mySnackbar.show();
+                                    // curColor = flipColor(curColor);
+                                    }
                                 }
 
                                 else {
@@ -122,8 +135,11 @@ public class PreviousGameActivity extends AppCompatActivity
                                     mySnackbar.show();
 
                                 }
+                                
                                 nextButton.setEnabled(false);
                             }
+
+
                         }
                     });
                     prevButton.setOnClickListener(new View.OnClickListener()
