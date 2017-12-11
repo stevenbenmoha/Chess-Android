@@ -172,6 +172,7 @@ public class Board
         Piece curPiece = board[curRow][curCol];
         if(!curPiece.checkMoveValidity(this, board, curRow, curCol, newRow, newCol) || !curPiece.getColor().equalsIgnoreCase(color))
             throw new Exception();
+
         if(board[newRow][newCol] != null)
         { // if you are moving to an occupied space
             if((board[curRow][curCol].toString().contains("wK") && board[newRow][newCol].toString().contains("wR")) || (board[curRow][curCol].toString().contains("bK") && board[newRow][newCol].toString().contains("bR")))
@@ -216,6 +217,7 @@ public class Board
                 promote("Q", newRow, newCol, color);
         }
     }
+
     /**
      * Checks if player is in Checkmate
      *
@@ -423,4 +425,8 @@ public class Board
         curBoard += "\n";
         return curBoard;
     }
+
+
+
+
 }

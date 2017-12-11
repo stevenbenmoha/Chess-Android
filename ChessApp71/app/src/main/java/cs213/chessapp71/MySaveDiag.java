@@ -10,6 +10,7 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -36,6 +37,9 @@ public class MySaveDiag extends DialogFragment
         {
             input.setError("Empty name cannot be saved");
         }
+
+
+
         builder.setPositiveButton("Save", new DialogInterface.OnClickListener()
         {
             @Override
@@ -43,15 +47,28 @@ public class MySaveDiag extends DialogFragment
             {
                 m_Text = input.getText().toString();
                 doSave = true;
-                try
-                {
-                    writeToFile(movesMade, m_Text);
-                }
-                catch(Exception c)
-                {
-                }
-                Intent intent = new Intent(getActivity(), HomeActivity.class);
-                startActivity(intent);
+
+             if (checkForDuplicates(m_Text)) {
+
+
+
+                 MySaveDiag mySave = new MySaveDiag();
+                 mySave.populateArray(movesMade);
+                 mySave.show(getFragmentManager(), "Diag");
+                 Toast.makeText(getContext(), "Duplicate name, try again", Toast.LENGTH_SHORT).show();
+
+             }
+
+             else {
+
+                 try {
+                     writeToFile(movesMade, m_Text);
+                 } catch (Exception c) {
+                 }
+                 Intent intent = new Intent(getActivity(), HomeActivity.class);
+                 startActivity(intent);
+
+             }
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
@@ -100,4 +117,27 @@ public class MySaveDiag extends DialogFragment
             movesMade.add(s);
         }
     }
+
+    public boolean checkForDuplicates(String filename) {
+
+        File sdcard = Environment.getExternalStorageDirectory();
+        Log.i("i", sdcard.getAbsolutePath());
+        File dir = new File(sdcard.getAbsolutePath() + "/Games");
+        File[] files = dir.listFiles();
+
+        filename = filename+".txt";
+
+        for (int i = 0; i < files.length; i++)
+        {
+
+            Log.i("i", files[i].getName());
+            if (filename.equals(files[i].getName())){
+                return true;
+            }
+        }
+
+
+        return false;
+    }
+
 }

@@ -95,9 +95,19 @@ public class PreviousGameActivity extends AppCompatActivity
                             }
                             else
                             {
+                                if (moves.size()>0){
+
                                 moveForward(moves);
                                 Snackbar mySnackbar = Snackbar.make(findViewById(android.R.id.content), getString(R.string.Checkmate) + "- " + curColor + " wins!", 2000);
                                 mySnackbar.show();
+
+                                }
+
+                                else {
+                                    Snackbar mySnackbar = Snackbar.make(findViewById(android.R.id.content), getString(R.string.Checkmate) + "- " + "Black" + " wins!", 2000);
+                                    mySnackbar.show();
+
+                                }
                                 nextButton.setEnabled(false);
                             }
                         }
