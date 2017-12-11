@@ -26,6 +26,7 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
     public String tag1 = null;
     public String tag2 = null;
     public String temp = null;
+    public String piece = "unchanged";
     public String curColor = "White";
     public ArrayList<String> movesMade = new ArrayList<>();
     public boolean hasUndone = false;
@@ -240,7 +241,6 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
     public void play(String tag1, String tag2)
     {
         Log.i("i", tag1);
-
         boolean drawAvail = false;
         boolean printBoard = true;
         tag1 = tag1.substring(6, 8);
@@ -254,9 +254,6 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
         {
             if(chessBoard.inCheck(curColor, null))
             {
-
-
-
                 chessBoard.move(curColor, input);
                 movesMade.add(input);
                 hasUndone = false;
@@ -280,8 +277,7 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
             }
             else
             {
-                Log.i("i", curColor);
-                Log.i("i", input);
+
                 chessBoard.move(curColor, input);
 
                 if(chessBoard.checkPromotion(curColor)) {
@@ -289,42 +285,14 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
                     selectPromotionPiece promote = new selectPromotionPiece();
                     promote.show(getFragmentManager(), "Diag");
 
-                    int newRow = convertRow(tag1.substring(1,2));
-                    int newCol = convertCol(tag1.substring(0,1));
-
-                    if (promote.desiredPiece.equals("rook")) {
-
-                        chessBoard.promote("R",newRow,newCol,curColor);
-
-                    }
-                    if (promote.desiredPiece.equals("queen")) {
-
-                        chessBoard.promote("Q",newRow,newCol,curColor);
-
-                    }
-
-                    if (promote.desiredPiece.equals("bishop")) {
-
-                        chessBoard.promote("B",newRow,newCol,curColor);
-
-                    }
-
-                    if (promote.desiredPiece.equals("knight")) {
-
-                        chessBoard.promote("N",newRow,newCol,curColor);
-
-                    }
-
-
-
-
-
+                    piece = promote.getDesiredPiece();
+                    Log.i("i", piece);
+                    promote(tag1);
 
                 }
 
                 hasUndone = false;
                 movesMade.add(input);
-                Log.i("i", "performed move");
                 updateBoard();
             }
             if(chessBoard.inCheckmate(curColor))
@@ -622,5 +590,41 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
 
     }
 
+    public String promotionDialog() {
 
+
+
+        return piece;
+
+    }
+
+    public void promote(String tag1) {
+
+        int newRow = convertRow(tag1.substring(1,2));
+        int newCol = convertCol(tag1.substring(0,1));
+
+        if (piece.equals("rook")) {
+
+            chessBoard.promote("R",newRow,newCol,curColor);
+
+        }
+        if (piece.equals("queen")) {
+
+            chessBoard.promote("Q",newRow,newCol,curColor);
+
+        }
+
+        if (piece.equals("bishop")) {
+
+            chessBoard.promote("B",newRow,newCol,curColor);
+
+        }
+
+        if (piece.equals("knight")) {
+
+            chessBoard.promote("N",newRow,newCol,curColor);
+
+        }
+
+    }
 }
