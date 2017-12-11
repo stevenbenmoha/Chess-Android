@@ -1,0 +1,1 @@
+This app uses the API Level 26. Make sure to run on an emulator using API 26. 
