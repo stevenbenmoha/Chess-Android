@@ -254,6 +254,9 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
         {
             if(chessBoard.inCheck(curColor, null))
             {
+
+
+
                 chessBoard.move(curColor, input);
                 movesMade.add(input);
                 hasUndone = false;
@@ -280,6 +283,45 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
                 Log.i("i", curColor);
                 Log.i("i", input);
                 chessBoard.move(curColor, input);
+
+                if(chessBoard.checkPromotion(curColor)) {
+
+                    selectPromotionPiece promote = new selectPromotionPiece();
+                    promote.show(getFragmentManager(), "Diag");
+
+                    int newRow = convertRow(tag1.substring(1,2));
+                    int newCol = convertCol(tag1.substring(0,1));
+
+                    if (promote.desiredPiece.equals("rook")) {
+
+                        chessBoard.promote("R",newRow,newCol,curColor);
+
+                    }
+                    if (promote.desiredPiece.equals("queen")) {
+
+                        chessBoard.promote("Q",newRow,newCol,curColor);
+
+                    }
+
+                    if (promote.desiredPiece.equals("bishop")) {
+
+                        chessBoard.promote("B",newRow,newCol,curColor);
+
+                    }
+
+                    if (promote.desiredPiece.equals("knight")) {
+
+                        chessBoard.promote("N",newRow,newCol,curColor);
+
+                    }
+
+
+
+
+
+
+                }
+
                 hasUndone = false;
                 movesMade.add(input);
                 Log.i("i", "performed move");
@@ -504,6 +546,79 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
 
 
         return curCol+curRow;
+
+    }
+
+
+    public int convertCol(String input) {
+
+        int x = -1;
+        String start = input.substring(0,1);
+
+        switch (start) {
+            case "a":
+                x = 0;
+                break;
+            case "b":
+                x = 1;
+                break;
+            case "c":
+                x = 2;
+                break;
+            case "d":
+                x = 3;
+                break;
+            case "e":
+                x = 4;
+                break;
+            case "f":
+                x = 5;
+                break;
+            case "g":
+               x = 6;
+                break;
+            case "h":
+               x = 7;
+                break;
+
+        }
+
+        return x;
+
+    }
+
+    public int convertRow(String z) {
+
+        int curRow = -1;
+
+        switch (z) {
+            case "8":
+                curRow = 0;
+                break;
+            case "7":
+                curRow = 1;
+                break;
+            case "6":
+                curRow = 2;
+                break;
+            case "5":
+                curRow = 3;
+                break;
+            case "4":
+                curRow = 4;
+                break;
+            case "3":
+                curRow = 5;
+            case "2":
+                curRow = 6;
+                break;
+            case "1":
+                curRow = 7;
+                break;
+
+        }
+
+        return curRow;
 
     }
 

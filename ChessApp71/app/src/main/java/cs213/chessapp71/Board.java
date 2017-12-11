@@ -214,17 +214,7 @@ public class Board
         }
         startingRow = curRow;
         lastMove = newRow + "," + newCol;
-        if(checkPromotion(color))
-        {
-            if(move.trim().length() > 5)
-            {
-                if(!checkPromotion(color))
-                    throw new Exception();
-                promote(Character.toString(move.trim().charAt(6)), newRow, newCol, color);
-            }
-            else
-                promote("Q", newRow, newCol, color);
-        }
+
     }
     /**
      * Checks if player is in Checkmate
@@ -341,7 +331,7 @@ public class Board
      *              promotion
      * @return true if the given color can be promoted, false otherwise
      */
-    private boolean checkPromotion(String color)
+    public boolean checkPromotion(String color)
     {
         if(color.equalsIgnoreCase("white"))
             for(int i = 0; i < SIZE; i++)
@@ -363,7 +353,7 @@ public class Board
      * @param newCol       int for which col to place the piece,
      * @param color        color representing which player is getting the promotion
      */
-    private void promote(String desiredPiece, int newRow, int newCol, String color)
+    public void promote(String desiredPiece, int newRow, int newCol, String color)
     {
         if(checkPromotion(color))
         {
