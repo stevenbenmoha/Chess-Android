@@ -14,6 +14,7 @@ public class MySaveDialogFragment extends DialogFragment
 {
     public ArrayList<String> movesMade = new ArrayList<String>();
     private boolean doSave;
+    private boolean isDraw = false;
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState)
     {
@@ -56,5 +57,7 @@ public class MySaveDialogFragment extends DialogFragment
             movesMade.add(s);
         }
     }
+
+
 }
 

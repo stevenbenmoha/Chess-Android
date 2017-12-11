@@ -352,17 +352,17 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
         }
     }
     public void saveFinishedGame()
+{
+    MySaveDialogFragment mySave = new MySaveDialogFragment();
+    mySave.populateArray(movesMade);
+    mySave.show(getFragmentManager(), "Diag");
+    if(mySave.getResign())
     {
-        MySaveDialogFragment mySave = new MySaveDialogFragment();
-        mySave.populateArray(movesMade);
-        mySave.show(getFragmentManager(), "Diag");
-        if(mySave.getResign())
-        {
-        }
-        else
-        {
-        }
     }
+    else
+    {
+    }
+}
     public void saveDialog()
     {
         MySaveDiag mySave = new MySaveDiag();

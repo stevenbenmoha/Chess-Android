@@ -50,8 +50,6 @@ public class MySaveDiag extends DialogFragment
 
              if (checkForDuplicates(m_Text)) {
 
-
-
                  MySaveDiag mySave = new MySaveDiag();
                  mySave.populateArray(movesMade);
                  mySave.show(getFragmentManager(), "Diag");
@@ -98,7 +96,7 @@ public class MySaveDiag extends DialogFragment
     {
         File sdcard = Environment.getExternalStorageDirectory();
         Log.i("i", sdcard.getAbsolutePath());
-        File dir = new File(sdcard.getAbsolutePath() + "/Games");
+        File dir = new File(sdcard.getAbsolutePath() + "/games");
         dir.mkdir();
         File file = new File(dir, filename + ".txt");
         FileWriter write = new FileWriter(file);
@@ -122,7 +120,7 @@ public class MySaveDiag extends DialogFragment
 
         File sdcard = Environment.getExternalStorageDirectory();
         Log.i("i", sdcard.getAbsolutePath());
-        File dir = new File(sdcard.getAbsolutePath() + "/Games");
+        File dir = new File(sdcard.getAbsolutePath() + "/games");
         File[] files = dir.listFiles();
 
         filename = filename+".txt";
@@ -139,5 +137,6 @@ public class MySaveDiag extends DialogFragment
 
         return false;
     }
+
 
 }

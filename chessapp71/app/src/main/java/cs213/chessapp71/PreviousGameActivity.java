@@ -93,17 +93,27 @@ public class PreviousGameActivity extends AppCompatActivity
                         public void onClick(View v)
                         {
                             prevButton.setEnabled(true);
+
                             if(i < moves.size())
                             {
                                 moveForward(moves);
                             }
-                            else
-                            {
+
+                            else{
                                 if (moves.size()>0){
 
                                 moveForward(moves);
-                                Snackbar mySnackbar = Snackbar.make(findViewById(android.R.id.content), getString(R.string.Checkmate) + "- " + curColor + " wins!", 2000);
+
+                                    if(moves.get(moves.size()-1).equals("Draw")) {
+
+                                        playersTurn.setText("Draw");
+
+                                    }
+
+                               else {Snackbar mySnackbar = Snackbar.make(findViewById(android.R.id.content), getString(R.string.Checkmate) + "- " + curColor + " wins!", 2000);
                                 mySnackbar.show();
+                                    // curColor = flipColor(curColor);
+                                    }
 
                                 }
 
@@ -128,6 +138,7 @@ public class PreviousGameActivity extends AppCompatActivity
                             }
                             else
                             {
+                                playersTurn.setText(curColor + "'s move");
                                 prevButton.setEnabled(false);
                                 Snackbar mySnackbar = Snackbar.make(findViewById(android.R.id.content), "Can't go further back", 2000);
                                 mySnackbar.show();
@@ -251,7 +262,9 @@ public class PreviousGameActivity extends AppCompatActivity
             String input = moves.get(j);
             try
             {
-                chessBoard.move(curColor, input);
+                if (input == "Draw"){}
+
+               else{chessBoard.move(curColor, input);}
             }
             catch(Exception c)
             {
@@ -261,7 +274,9 @@ public class PreviousGameActivity extends AppCompatActivity
             updateBoard();
             j++;
         }
+
         i++;
+
     }
     private void moveBackward(ArrayList<String> moves)
     {

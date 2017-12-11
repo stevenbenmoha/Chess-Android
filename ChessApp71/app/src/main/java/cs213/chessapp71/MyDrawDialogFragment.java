@@ -31,6 +31,7 @@ public class MyDrawDialogFragment extends DialogFragment
                 Snackbar mySnackbar = Snackbar.make(getActivity().findViewById(android.R.id.content), "Draw", 3000);
                 mySnackbar.show();
                 MySaveDialogFragment mySave = new MySaveDialogFragment();
+                movesMade.add("Draw");
                 mySave.populateArray(movesMade);
                 mySave.show(getFragmentManager(), "Diag");
             }
