@@ -404,13 +404,17 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
                             for (int l = 0; l < 8; l++)
                                 if (curPiece.checkMoveValidity(chessBoard, chessBoard.board, i, j, k, l)) {
 
-                                    String move = convert(i, j)+" "+convert(k, l);
-                                    validMoves.add(move);
 
+                                    for(int m = 0; m < 8; m++)
+                                        tmpBoard[m] = chessBoard.board[m].clone();
+                                    tmpBoard[k][l] = curPiece;
+                                    tmpBoard[i][j] = null;
+                                    if(!chessBoard.inCheck(curColor, tmpBoard)){
 
+                                        String move = convert(i, j)+" "+convert(k, l);
+                                        validMoves.add(move);
+                                    }
                                 }
-
-
             }
         }
 
