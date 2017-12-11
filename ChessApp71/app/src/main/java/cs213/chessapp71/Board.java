@@ -1,14 +1,10 @@
-/**
- * @author Colin Ackerley
- * @author Steven Benmoha
- */
 package cs213.chessapp71;
 public class Board
 {
     private final int SIZE = 8;
     public Piece[][] board = new Piece[8][8];
-    public String lastMove;
-    public int startingRow;
+    String lastMove;
+    int startingRow;
     /**
      * Board constructor
      */
@@ -20,7 +16,7 @@ public class Board
      * Called when a new board is created. Puts all the pieces on the board
      * for a new game
      */
-    public void initBoard()
+    private void initBoard()
     {
         board[0][0] = new Rook("black");
         board[0][1] = new Knight("black");
@@ -172,7 +168,13 @@ public class Board
         Piece curPiece = board[curRow][curCol];
         if(!curPiece.checkMoveValidity(this, board, curRow, curCol, newRow, newCol) || !curPiece.getColor().equalsIgnoreCase(color))
             throw new Exception();
-
+        Piece[][] tmpBoard = new Piece[SIZE][];
+        for(int m = 0; m < SIZE; m++)
+            tmpBoard[m] = board[m].clone();
+        tmpBoard[newRow][newCol] = curPiece;
+        tmpBoard[curRow][curCol] = null;
+        if(inCheck(color, tmpBoard))
+            throw new Exception();
         if(board[newRow][newCol] != null)
         { // if you are moving to an occupied space
             if((board[curRow][curCol].toString().contains("wK") && board[newRow][newCol].toString().contains("wR")) || (board[curRow][curCol].toString().contains("bK") && board[newRow][newCol].toString().contains("bR")))
@@ -189,10 +191,12 @@ public class Board
             }
         }
         else if(board[newRow][newCol] == null && (board[curRow][curCol].toString().equalsIgnoreCase("wP") || board[curRow][curCol].toString().equalsIgnoreCase("bP")))
-        { // if a piece moves to an empty space
-            // and it's a pawn that made through its
-            // validity check (aka
-            // enpassant move)
+        { /*
+            if a piece moves to an empty space
+            and it's a pawn that made through its
+            validity check (aka
+            enpassant move)
+            */
             board[newRow][newCol] = curPiece; // move the pawn
             board[curRow][newCol] = null; // remove the opponents pawn from
             // board
@@ -217,7 +221,6 @@ public class Board
                 promote("Q", newRow, newCol, color);
         }
     }
-
     /**
      * Checks if player is in Checkmate
      *
@@ -249,7 +252,7 @@ public class Board
      * check, false otherwise Tests all pieces for the given player to see if they
      * can move in any way that will result in that player not being in check
      */
-    protected boolean canPieceMove(String color)
+    private boolean canPieceMove(String color)
     {
         Piece[][] tmpBoard = new Piece[SIZE][];
         Piece curPiece;
@@ -281,7 +284,7 @@ public class Board
      * @return kingPos 1D array of the position of the blackking for color Method to search for
      * the blackking for a given color
      */
-    protected int[] getKingPos(String color, Piece[][] curBoard)
+    private int[] getKingPos(String color, Piece[][] curBoard)
     {
         int col = 0, row = 0;
         for(int i = 0; i < SIZE; i++)
@@ -305,7 +308,7 @@ public class Board
      * @return true if the given color is in check, false otherwise Method to test
      * if a given player is in check or not
      */
-    public boolean inCheck(String color, Piece[][] curBoard)
+     boolean inCheck(String color, Piece[][] curBoard)
     {
         if(curBoard == null)
         {
@@ -333,7 +336,7 @@ public class Board
      *              promotion
      * @return true if the given color can be promoted, false otherwise
      */
-    protected boolean checkPromotion(String color)
+    private boolean checkPromotion(String color)
     {
         if(color.equalsIgnoreCase("white"))
             for(int i = 0; i < SIZE; i++)
@@ -355,7 +358,7 @@ public class Board
      * @param newCol       int for which col to place the piece,
      * @param color        color representing which player is getting the promotion
      */
-    protected void promote(String desiredPiece, int newRow, int newCol, String color)
+    private void promote(String desiredPiece, int newRow, int newCol, String color)
     {
         if(checkPromotion(color))
         {
@@ -369,64 +372,4 @@ public class Board
                 board[newRow][newCol] = new Bishop(color.toLowerCase());
         }
     }
-    /**
-     * Prints out the board
-     *
-     * @return curBoard string that is a text representation of the current state of the
-     * board
-     */
-    public String toString()
-    {
-        String curBoard = "";
-        int curRow;
-        for(curRow = 0; curRow < SIZE; curRow++)
-        {
-            for(int curCol = 0; curCol < SIZE; curCol++)
-            {
-                if(board[curRow][curCol] == null)
-                {
-                    if(curRow % 2 == 0 && curCol % 2 == 0)
-                    {
-                        curBoard += "## ";
-                    }
-                    else if(curRow % 2 == 0 && curCol % 2 == 1)
-                    {
-                        if(curCol == 0 || curCol == SIZE - 1)
-                            curBoard += "   ";
-                        else
-                            curBoard += "   ";
-                    }
-                    else if(curRow % 2 == 1 && curCol % 2 == 1)
-                    {
-                        curBoard += "## ";
-                    }
-                    else if(curRow % 2 == 1 && curCol % 2 == 0)
-                    {
-                        if(curCol == 0 || curCol == SIZE - 1)
-                            curBoard += "   ";
-                        else
-                            curBoard += "   ";
-                    }
-                }
-                else
-                    curBoard += board[curRow][curCol] + " ";
-            }
-            if(curRow > 1 && curRow < 6)
-            {
-                curBoard += "";
-                curBoard += SIZE - curRow;
-            }
-            else
-                curBoard += SIZE - curRow;
-            curBoard += "\n";
-        }
-        String letters = " a  b  c  d  e  f  g  h ";
-        curBoard += letters;
-        curBoard += "\n";
-        return curBoard;
-    }
-
-
-
-
 }
