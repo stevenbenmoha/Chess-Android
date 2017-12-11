@@ -11,7 +11,7 @@ import android.util.Log;
  */
 public class selectPromotionPiece extends DialogFragment
 {
-    public String desiredPiece="original";
+    public String desiredPiece="queen";
 
     public Dialog onCreateDialog(Bundle savedInstanceState)
     {
