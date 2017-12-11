@@ -1,4 +1,7 @@
 package cs213.chessapp71;
+
+import android.util.Log;
+
 public class Board
 {
     private final int SIZE = 8;
@@ -166,6 +169,8 @@ public class Board
             break;
         }
         Piece curPiece = board[curRow][curCol];
+        Log.i("i", curPiece.getColor());
+        Log.i("i", color);
         if(!curPiece.checkMoveValidity(this, board, curRow, curCol, newRow, newCol) || !curPiece.getColor().equalsIgnoreCase(color))
             throw new Exception();
         Piece[][] tmpBoard = new Piece[SIZE][];

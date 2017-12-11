@@ -49,14 +49,38 @@ public class Pawn extends Piece
                 return false;
             }
         }
+        /*
         if(hasMoved && rowDiff > 1)
         {
             return false;
         }
-        if(!hasMoved && rowDiff > 2)
+
+        /* if(!hasMoved && rowDiff > 2)
         {
             return false;
+        } */
+
+        if(color.equalsIgnoreCase("black") && curRow == 1 && rowDiff >2) {
+
+                return false;
         }
+
+        if(color.equalsIgnoreCase("white") && curRow == 6 && rowDiff >2) {
+
+            return false;
+        }
+
+        if(color.equalsIgnoreCase("black") && curRow != 1 && rowDiff >1) {
+
+            return false;
+        }
+
+        if(color.equalsIgnoreCase("white") && curRow != 6 && rowDiff >1) {
+
+            return false;
+        }
+
+
         if(colDiff == 1)
         {
             return checkPawnDiag(board, b, curRow, curCol, newRow, newCol);
