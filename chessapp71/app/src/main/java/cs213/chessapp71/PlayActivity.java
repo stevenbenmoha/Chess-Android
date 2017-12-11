@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Random;
+
 /**
  * Created by Steven on 11/30/2017.
  */
@@ -31,6 +33,7 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
     protected TextView playersTurn;
     protected Button undoButton;
     protected Button drawButton;
+    protected Button aiButton;
     int itemsSelected = 0;
     Board chessBoard;
     private String m_Text;
@@ -55,6 +58,18 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
         chessBoard = new Board();
         undoButton = (Button) findViewById(R.id.undoButton);
         drawButton = (Button) findViewById(R.id.drawButton);
+        aiButton = (Button) findViewById(R.id.aiButton);
+
+        aiButton.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                aiMove(curColor);
+            }
+        });
+
+
         undoButton.setOnClickListener(new OnClickListener()
         {
             @Override
@@ -224,6 +239,8 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
     }
     public void play(String tag1, String tag2)
     {
+        Log.i("i", tag1);
+
         boolean drawAvail = false;
         boolean printBoard = true;
         tag1 = tag1.substring(6, 8);
@@ -369,4 +386,122 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener
         mySave.populateArray(movesMade);
         mySave.show(getFragmentManager(), "Diag");
     }
+
+
+    public void aiMove(String curColor) {
+
+      ArrayList<String> validMoves = new ArrayList<>();
+
+
+        Piece[][] tmpBoard = new Piece[8][];
+        Piece curPiece;
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                curPiece = chessBoard.board[i][j];
+                if (curPiece != null)
+                    if (curPiece.getColor().equalsIgnoreCase(curColor))
+                        for (int k = 0; k < 8; k++)
+                            for (int l = 0; l < 8; l++)
+                                if (curPiece.checkMoveValidity(chessBoard, chessBoard.board, i, j, k, l)) {
+
+                                    String move = convert(i, j)+" "+convert(k, l);
+                                    validMoves.add(move);
+
+
+                                }
+
+
+            }
+        }
+
+        Random rand = new Random();
+        String aiMove = validMoves.get(rand.nextInt(validMoves.size()));
+
+            Log.i("i", aiMove);
+            String start = aiMove.substring(0,2);
+
+            String end = aiMove.substring(3,5);
+
+            start = "000000"+start;
+            end = "000000"+end;
+
+            Log.i("i", start);
+            Log.i("i", end);
+
+            play(end,start);
+            playersTurn.setText(flipColor(curColor) + "'s move");
+            itemsSelected = 0;
+            tag1 = "";
+            tag2 = "";
+            temp = "";
+
+    }
+
+    public String convert(int k, int l) {
+
+        String curCol="";
+        String curRow="";
+        switch (l) {
+            case 0:
+                curCol = "a";
+                break;
+            case 1:
+                curCol = "b";
+                break;
+            case 2:
+                curCol = "c";
+                break;
+            case 3:
+                curCol = "d";
+                break;
+            case 4:
+                curCol = "e";
+                break;
+            case 5:
+                curCol = "f";
+                break;
+            case 6:
+                curCol = "g";
+                break;
+            case 7:
+                curCol = "h";
+                break;
+
+        }
+
+        switch (k) {
+            case 0:
+                curRow = "8";
+                break;
+            case 1:
+                curRow = "7";
+                break;
+            case 2:
+                curRow = "6";
+                break;
+            case 3:
+                curRow = "5";
+                break;
+            case 4:
+                curRow = "4";
+                break;
+            case 5:
+                curRow = "3";
+                break;
+            case 6:
+                curRow = "2";
+                break;
+            case 7:
+                curRow = "1";
+                break;
+
+        }
+
+
+
+        return curCol+curRow;
+
+    }
+
+
 }

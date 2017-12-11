@@ -135,7 +135,7 @@ public class PreviousGameActivity extends AppCompatActivity
                                     mySnackbar.show();
 
                                 }
-                                
+
                                 nextButton.setEnabled(false);
                             }
 
